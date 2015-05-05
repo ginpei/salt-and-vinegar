@@ -2,7 +2,7 @@
 
 ## Tasks
 
-* [ ] Graphical Degining
+* [ ] Graphical designing
 * [ ] Update item list after adding
 * [ ] Show errors on adding
 * [ ] Edit items by ajax
