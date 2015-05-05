@@ -26,5 +26,6 @@
   <div class="actions">
     <%= f.hidden_field :paper_id %>
     <%= f.submit %>
+    <%= f.button 'Cancel', type: :button, class: 'js-hideEditItemForm' if item.id %>
   </div>
 <% end %>

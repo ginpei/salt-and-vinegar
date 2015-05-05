@@ -4,6 +4,7 @@
   <td><%= item.orderer %></td>
   <td>
     <button class="js-openEditItemForm">Edit</button>
+    <%= render partial: 'items/form', locals: { item: item } %>
   </td>
   <td>
     <%= form_for item, method: :delete, remote: true, html: { id: nil, class: 'delete_item' } do |f| %>
