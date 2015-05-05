@@ -30,7 +30,8 @@ class ItemsController < ApplicationController
       html = render_to_string('items/_show', layout: nil, locals: { item: @item } )
       render json: { status: 'success', item: @item, html: html }
     else
-      render status: 500, json: { status: 'error', data: {} }  # FIXME
+      messages = @item.errors.full_messages
+      render status: 400, json: { status: 'error', messages: messages }
     end
   end
 

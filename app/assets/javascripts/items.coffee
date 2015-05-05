@@ -17,5 +17,16 @@ $(document).on 'ajax:success', '#new_item', (event, data, ajax, status)->
   $form[0].reset()
   $('#items_list').append(data.html)
 
-$(document).on 'ajax:error', '#new_item', (event, data, ajax, status)->
-  alert 'Error'  # FIXME
+$(document).on 'ajax:error', '#new_item', (event, ajax, status, statusText)->
+  console.log arguments
+  data = JSON.parse(ajax.responseText)
+  messages = data.messages
+
+  if messages.length > 1
+    text = messages
+      .map (message, index) -> return "* #{message}\n"
+      .join('')
+  else
+    text = messages[0]
+
+  alert text
