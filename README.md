@@ -17,7 +17,5 @@ Manage what we want and should buy.
 * [ ] Graphical designing
 * [x] Update item list after adding
 * [x] Show errors on adding
-* [ ] Edit items by ajax
-    * [ ] How?
-    * [ ] Implemantation
+* [x] Edit items by ajax
 * [ ] Randomize paper's ID for security
