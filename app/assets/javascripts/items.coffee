@@ -14,7 +14,8 @@ $(document).on 'ajax:complete', '#new_item', (event, ajax, status)->
 
 $(document).on 'ajax:success', '#new_item', (event, data, ajax, status)->
   $form = $(event.currentTarget)
-  $form[0].reset()
+  $form.find('[name="item[name]"], [name="item[quantity]"]')
+    .val('')
   $('#items_list').append(data.html)
 
 $(document).on 'ajax:error', '#new_item', (event, ajax, status, statusText)->
