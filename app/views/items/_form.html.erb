@@ -13,15 +13,15 @@
 
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, placeholder: 'Salt' %>
   </div>
   <div class="field">
     <%= f.label :quantity %><br>
-    <%= f.text_field :quantity %>
+    <%= f.text_field :quantity, placeholder: '1kg' %>
   </div>
   <div class="field">
     <%= f.label :orderer %><br>
-    <%= f.text_field :orderer %>
+    <%= f.text_field :orderer, placeholder: 'Alice' %>
   </div>
   <div class="actions">
     <%= f.hidden_field :paper_id %>
