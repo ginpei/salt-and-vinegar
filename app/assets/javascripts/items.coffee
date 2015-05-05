@@ -30,3 +30,8 @@ $(document).on 'ajax:error', '#new_item', (event, ajax, status, statusText)->
     text = messages[0]
 
   alert text
+
+$(document).on 'ajax:send', '.delete_item', (event, data, ajax, status)->
+  $form = $(event.currentTarget)
+  $row = $form.closest('.item')
+  $row.remove()
