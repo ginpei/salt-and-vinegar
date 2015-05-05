@@ -53,12 +53,11 @@ $(document).on 'click', '.js-hideEditItemForm', (event)->
   $button.show()
   $form.hide()
 
-$(document).on 'ajax:complete', '.edit_item', (event)->
+$(document).on 'ajax:error', '.edit_item', (event)->
+  alert 'wow'
+
+$(document).on 'ajax:success', '.edit_item', (event, data, ajax, status)->
   $row =  $(event.currentTarget).closest('.item')
-  $button = $row.find('.js-openEditItemForm')
-  $form = $row.find('.edit_item')
 
-  $button.show()
-  $form.hide()
-
-  alert 'Reload please!'
+  html = data.html
+  $row.replaceWith(html)
