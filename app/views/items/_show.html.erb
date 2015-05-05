@@ -2,7 +2,7 @@
   <td><%= item.name %></td>
   <td><%= item.quantity %></td>
   <td><%= item.orderer %></td>
-  <td><%= link_to 'Edit', edit_item_path(item) %></td>
+  <td><button class="edit_item" disabled>Edit</button></td>
   <td>
     <%= form_for item, method: :delete, remote: true, html: { id: nil, class: 'delete_item' } do |f| %>
       <%= f.submit 'Destroy' %>
