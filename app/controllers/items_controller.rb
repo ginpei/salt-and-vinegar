@@ -5,14 +5,8 @@ class ItemsController < ApplicationController
   # POST /items.json
   def create
     @item = Item.new(item_params)
-
-    if @item.save
-      html = render_to_string('items/_show', layout: nil, locals: { item: @item } )
-      render json: { status: 'success', item: @item, html: html }
-    else
-      messages = @item.errors.full_messages
-      render status: 400, json: { status: 'error', messages: messages }
-    end
+    @item.save
+    render_item_json @item
   end
 
   # PATCH/PUT /items/1
@@ -45,5 +39,15 @@ class ItemsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
       params.require(:item).permit(:paper_id, :name, :quantity, :orderer)
+    end
+
+    def render_item_json item
+      if item.errors.empty?
+        html = render_to_string('items/_show', layout: nil, locals: { item: @item } )
+        render json: { status: 'success', item: item, html: html }
+      else
+        messages = item.errors.full_messages
+        render status: 400, json: { status: 'error', messages: messages }
+      end
     end
 end
