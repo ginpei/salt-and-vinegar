@@ -27,7 +27,8 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
 
     if @item.save
-      render json: { status: 'success', item: @item, message: 'New item has been added!' }
+      html = render_to_string('items/_show', layout: nil, locals: { item: @item } )
+      render json: { status: 'success', item: @item, html: html }
     else
       render status: 500, json: { status: 'error', data: {} }  # FIXME
     end
