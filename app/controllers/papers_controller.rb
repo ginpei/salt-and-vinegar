@@ -10,6 +10,8 @@ class PapersController < ApplicationController
   # GET /papers/1
   # GET /papers/1.json
   def show
+    @item = @paper.items.new
+    @items = @paper.items.all
   end
 
   # GET /papers/new

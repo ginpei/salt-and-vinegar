@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  paper_id: 
+  name: MyString
+  quantity: MyString
+  orderer: MyString
+
+two:
+  paper_id: 
+  name: MyString
+  quantity: MyString
+  orderer: MyString
