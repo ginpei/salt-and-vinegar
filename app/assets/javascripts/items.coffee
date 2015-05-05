@@ -36,3 +36,28 @@ $(document).on 'ajax:send', '.delete_item', (event, data, ajax, status)->
   $form = $(event.currentTarget)
   $row = $form.closest('.item')
   $row.remove()
+
+$(document).on 'click', '.js-openEditItemForm', (event)->
+  $row = $(event.currentTarget).closest('.item')
+  $button = $row.find('.js-openEditItemForm')
+  $form = $row.find('.edit_item')
+
+  $button.hide()
+  $form.show()
+
+$(document).on 'click', '.js-hideEditItemForm', (event)->
+  $row = $(event.currentTarget).closest('.item')
+  $button = $row.find('.js-openEditItemForm')
+  $form = $row.find('.edit_item')
+
+  $button.show()
+  $form.hide()
+
+$(document).on 'ajax:error', '.edit_item', (event)->
+  alert 'wow'
+
+$(document).on 'ajax:success', '.edit_item', (event, data, ajax, status)->
+  $row =  $(event.currentTarget).closest('.item')
+
+  html = data.html
+  $row.replaceWith(html)

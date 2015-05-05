@@ -1,10 +1,10 @@
-<%= form_for(@item, remote: true) do |f| %>
-  <% if @item.errors.any? %>
+<%= form_for(item, remote: true) do |f| %>
+  <% if item.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+      <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
 
       <ul>
-      <% @item.errors.full_messages.each do |message| %>
+      <% item.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -13,18 +13,19 @@
 
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, placeholder: 'Salt' %>
   </div>
   <div class="field">
     <%= f.label :quantity %><br>
-    <%= f.text_field :quantity %>
+    <%= f.text_field :quantity, placeholder: '1kg' %>
   </div>
   <div class="field">
     <%= f.label :orderer %><br>
-    <%= f.text_field :orderer %>
+    <%= f.text_field :orderer, placeholder: 'Alice' %>
   </div>
   <div class="actions">
     <%= f.hidden_field :paper_id %>
     <%= f.submit %>
+    <%= f.button 'Cancel', type: :button, class: 'js-hideEditItemForm' if item.id %>
   </div>
 <% end %>
