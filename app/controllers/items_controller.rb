@@ -26,14 +26,10 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
 
-    respond_to do |format|
-      if @item.save
-        format.html { redirect_to @item.paper, notice: 'Item was successfully created.' }
-        format.json { render :show, status: :created, location: @item }
-      else
-        format.html { render :new }
-        format.json { render json: @item.errors, status: :unprocessable_entity }
-      end
+    if @item.save
+      render json: { status: 'success', item: @item, message: 'New item has been added!' }
+    else
+      render status: 500, json: { status: 'error', data: {} }  # FIXME
     end
   end
 
