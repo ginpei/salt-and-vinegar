@@ -5,7 +5,7 @@
   <%= @paper.title %>
 </p>
 
-<%= render 'items/form' %>
+<%= render partial: 'items/form', locals: { item: @item } %>
 <%= render 'items/index' %>
 
 <%= link_to 'Edit', edit_paper_path(@paper) %> |
