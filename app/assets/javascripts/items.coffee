@@ -25,7 +25,6 @@ $(document).on 'ajax:success', '.edit_item', (event, data, ajax, status)->
   $row.replaceWith(html)
 
 $(document).on 'ajax:error', '#new_item, .edit_item', (event, ajax, status, statusText)->
-  console.log arguments
   data = JSON.parse(ajax.responseText)
   messages = data.messages
 
