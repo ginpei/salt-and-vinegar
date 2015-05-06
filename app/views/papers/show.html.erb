@@ -1,9 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @paper.title %>
-</p>
+<h1><%= @paper.title %></h1>
+
+<div>
+  Don't forget this URL!<br />
+  <input class="paper-url js-paper-url" type="text" value="<%= paper_url @paper %>" readonly />
+</div>
 
 <%= render partial: 'items/form', locals: { item: @item } %>
 <%= render 'items/index' %>
