@@ -9,6 +9,7 @@
   h1 {
     font-family: 'Life Savers', cursive;
     font-size: 100px;
+    line-height: 100px;
   }
   .home-createNew:hover {
     background-color: transparent;
@@ -16,5 +17,14 @@
   }
   .home-createNew:active img {
     transform: rotate(10deg);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  #home {
+    h1 {
+      font-size: 30px;
+      line-height: 30px;
+    }
   }
 }
