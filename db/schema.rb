@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150505023430) do
+ActiveRecord::Schema.define(version: 20150506000902) do
 
   create_table "items", force: :cascade do |t|
     t.integer  "paper_id",   null: false
@@ -28,6 +28,9 @@ ActiveRecord::Schema.define(version: 20150505023430) do
     t.string   "title",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "token",      null: false
   end
+
+  add_index "papers", ["token"], name: "index_papers_on_token", unique: true
 
 end

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :items, except: [:index, :show, :new, :edit]
 
-  resources :papers
+  resources :papers, param: :token
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
