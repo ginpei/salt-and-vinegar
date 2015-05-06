@@ -1,3 +1,20 @@
 // Place all the styles related to the miscellaneous controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#home {
+  text-align: center;
+  margin-bottom: 100px;
+
+  h1 {
+    font-family: 'Life Savers', cursive;
+    font-size: 100px;
+  }
+  .home-createNew:hover {
+    background-color: transparent;
+    color: #009;
+  }
+  .home-createNew:active img {
+    transform: rotate(10deg);
+  }
+}
