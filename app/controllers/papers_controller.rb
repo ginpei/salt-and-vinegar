@@ -1,12 +1,6 @@
 class PapersController < ApplicationController
   before_action :set_paper, only: [:show, :edit, :update, :destroy]
 
-  # GET /papers
-  # GET /papers.json
-  def index
-    @papers = Paper.all
-  end
-
   # GET /papers/1
   # GET /papers/1.json
   def show

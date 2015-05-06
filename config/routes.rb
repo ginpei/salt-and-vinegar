@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :items, except: [:index, :show, :new, :edit]
 
-  resources :papers, param: :token
+  resources :papers, param: :token, except: [:index]
 
   root 'miscellaneous#home'
 
