@@ -18,4 +18,4 @@ Manage what we want and should buy.
 * [x] Update item list after adding
 * [x] Show errors on adding
 * [x] Edit items by ajax
-* [ ] Randomize paper's ID for security
+* [x] Randomize paper's ID for security
