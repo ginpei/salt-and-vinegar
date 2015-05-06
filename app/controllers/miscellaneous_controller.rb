@@ -1,0 +1,2 @@
+class MiscellaneousController < ApplicationController
+end
