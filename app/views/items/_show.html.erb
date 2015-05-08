@@ -8,7 +8,7 @@
   </td>
   <td>
     <%= form_for item, method: :delete, remote: true, html: { id: nil, class: 'delete_item' } do |f| %>
-      <%= f.submit 'Destroy', class: 'btn-flat red-text waves-effect waves-light' %>
+      <%= f.button 'Destroy', class: 'btn-flat red-text waves-effect waves-light', type: 'submit' %>
     <% end %>
   </td>
 </tr>
