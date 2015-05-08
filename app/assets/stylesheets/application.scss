@@ -1,0 +1,22 @@
+@import "materialize";
+
+body {
+  display: flex;
+  min-height: 100vh;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+}
+header {
+  padding-top: 3em;
+}
+main {
+  flex: 1;
+  -webkit-flex: 1;
+}
+.parallax-container {
+  height: 450px;
+}
+.c-url {
+  margin-bottom: 3rem;
+  padding: 0.5em 1em;
+}

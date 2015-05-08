@@ -15,7 +15,10 @@
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="right">
+    <%= button_tag(type: 'submit', class: "btn-large waves-effect waves-light") do %>
+      Create
+    <% end %>
   </div>
+
 <% end %>

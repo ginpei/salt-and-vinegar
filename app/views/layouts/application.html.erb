@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Salt and Vinegar</title>
-  <meta name="viewport" content="width=device-width">
-  <link href='http://fonts.googleapis.com/css?family=Life+Savers:700' rel='stylesheet' type='text/css' />
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+    <title>Salt and Vinegar</title>
+    <meta name="viewport" content="width=device-width">
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
 </head>
 <body>
 
 <%= yield %>
 
+<footer class="page-footer grey darken-1">
+  <div class="container">
+  <h5 class="white-text">FROG HOUSE</h5>
+  <p class="white-text text-lighten-4">私達はバンクーバーにあるクリエイター専用のシェアハウスです。皆の目標はただひとつ、世界に通用するクリエイターになること。私達はその登竜門としてバンクーバーを選びました。そのために必要な知識のほとんどはこのシェアハウスで共有することができます。</p>
+  </div>
+  <div class="footer-copyright"><small class="container">© 2015 Salt and Vinegar</small></div>
+</footer>
 </body>
 </html>
