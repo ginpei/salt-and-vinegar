@@ -13,19 +13,24 @@
 
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name, placeholder: 'Salt' %>
+    <%= f.text_field :name, placeholder: 'Milk' %>
   </div>
+
   <div class="field">
     <%= f.label :quantity %><br>
-    <%= f.text_field :quantity, placeholder: '1kg' %>
+    <%= f.text_field :quantity, placeholder: '4L' %>
   </div>
+
   <div class="field">
     <%= f.label :orderer %><br>
-    <%= f.text_field :orderer, placeholder: 'Alice' %>
+    <%= f.text_field :orderer, placeholder: 'Senna' %>
   </div>
+
   <div class="actions">
     <%= f.hidden_field :paper_id %>
-    <%= f.submit %>
-    <%= f.button 'Cancel', type: :button, class: 'js-hideEditItemForm' if item.id %>
+    <%= button_tag(type: 'submit', class: "btn waves-effect waves-light") do %>
+      Create Item
+    <% end %>
+    <%= f.button 'Cancel', type: :button, class: 'btn waves-effect waves-light js-hideEditItemForm' if item.id %>
   </div>
 <% end %>
