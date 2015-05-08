@@ -1,14 +1,23 @@
-<p id="notice"><%= notice %></p>
+<header class="teal darken-1 z-depth-1">
+    <div class="container"><h1 class="white-text">
+        <%= @paper.title %></h1></div>
+</header>
+<main class="container" style="padding-top: 3rem">
+  <div id="notice" class="center-align green-text"><%= notice %></div>
 
-<h1><%= @paper.title %></h1>
 
-<div>
-  Don't forget this URL!<br />
-  <input class="paper-url js-paper-url" type="text" value="<%= paper_url @paper %>" readonly />
-</div>
+  <div>Don't forget this URL!</div>
+  <div class="grey lighten-4 teal-text c-url js-paper-url"><%= paper_url @paper %></div>
 
-<%= render partial: 'items/form', locals: { item: @item } %>
-<%= render 'items/index' %>
+  <h3 class="teal-text">List</h3>
+  <%= render 'items/index' %>
 
-<%= link_to 'Edit', edit_paper_path(@paper) %> |
-<%= link_to 'Back', papers_path %>
+  <h3 class="teal-text">Input</h3>
+  <%= render partial: 'items/form', locals: { item: @item } %>
+
+
+  <p class="right">
+    <%= link_to 'Edit', edit_paper_path(@paper) %> |
+    <%= link_to 'Back', papers_path %>
+  </p>
+</main>

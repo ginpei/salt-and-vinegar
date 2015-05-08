@@ -1,5 +1,15 @@
-<h1>New Paper</h1>
+<header class="teal darken-1 z-depth-1">
+    <div class="container"><h1 class="white-text">Create New Paper</h1></div>
+</header>
+<div class="parallax-container">
+    <div class="parallax"><img src="/img/food.jpg"></div>
+</div>
+<main class="container" style="padding: 3rem 0">
+    <%= render 'form' %>
+</main>
 
-<%= render 'form' %>
-
-<%= link_to 'Back', papers_path %>
+<script>
+  $(document).ready(function(){
+    $('.parallax').parallax();
+  });
+</script>

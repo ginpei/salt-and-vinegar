@@ -3,12 +3,12 @@
   <td><%= item.quantity %></td>
   <td><%= item.orderer %></td>
   <td>
-    <button class="js-openEditItemForm">Edit</button>
+    <button class="btn-flat teal-text waves-effect waves-light js-openEditItemForm">Edit</button>
     <%= render partial: 'items/form', locals: { item: item } %>
   </td>
   <td>
     <%= form_for item, method: :delete, remote: true, html: { id: nil, class: 'delete_item' } do |f| %>
-      <%= f.submit 'Destroy' %>
+      <%= f.submit 'Destroy', class: 'btn-flat red-text waves-effect waves-light' %>
     <% end %>
   </td>
 </tr>
