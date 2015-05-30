@@ -3,7 +3,7 @@
     <%= f.button 'Destroy', class: 'btn-flat red-text waves-effect waves-light', type: 'submit' %>
   <% end %>
 <% end %>
-<%= form_for(item, remote: true, html: { class: 'js-itemForm' }) do |f| %>
+<%= form_for(item, remote: true, html: { class: "js-itemForm #{if item.id then 'js-itemForm-edit' else 'js-itemForm-new' end}" }) do |f| %>
   <% if item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
@@ -18,12 +18,12 @@
 
   <div class="field">
     <%= f.label :name %><br>
-    <%= f.text_field :name, placeholder: 'Milk' %>
+    <%= f.text_field :name, class: 'js-continuable', placeholder: 'Milk' %>
   </div>
 
   <div class="field">
     <%= f.label :quantity %><br>
-    <%= f.text_field :quantity, placeholder: '4L' %>
+    <%= f.text_field :quantity, class: 'js-continuable', placeholder: '4L' %>
   </div>
 
   <div class="field">
@@ -36,6 +36,6 @@
     <%= button_tag(type: 'submit', class: "btn waves-effect waves-light") do %>
       Create Item
     <% end %>
-    <%= f.button 'Cancel', type: :button, class: 'btn waves-effect waves-light js-hideEditItemForm' if item.id %>
+    <%= f.button 'Cancel', type: :button, class: 'btn waves-effect waves-light js-closeEditItemForm' if item.id %>
   </div>
 <% end %>

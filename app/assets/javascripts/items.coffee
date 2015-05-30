@@ -2,16 +2,65 @@ unless window.onomatopia
   window.onomatopia = {
     $document: $(document)
   }
+
 window.onomatopia.item = (
+  addAction: (selector, type, listener) ->
+    window.onomatopia.$document.on(type, selector, listener)
+
   initialize: () ->
-    @addAction '.js-itemForm', 'ajax:send',     (event, ajax)=> @_lockForm(@_findEventForm(event))
-    @addAction '.js-itemForm', 'ajax:complete', (event, ajax)=> @_unlockForm(@_findEventForm(event))
+    @addAction '.js-openEditItemForm', 'click',
+      (event)=> @_openEditForm(@_findEventRow(event))
+    @addAction '.js-closeEditItemForm', 'click',
+      (event)=> @_closeEditForm(@_findEventRow(event))
+    @addAction '.js-itemForm', 'ajax:send',
+      (event, ajax)=> @_lockForm(@_findEventForm(event))
+    @addAction '.js-itemForm', 'ajax:complete',
+      (event, ajax)=> @_unlockForm(@_findEventForm(event))
+    @addAction '.js-itemForm-new', 'ajax:success',
+      (event, data, ajax, status)=> @_appendCreatedItem(@_findEventForm(event), data)
+    @addAction '.js-itemForm-edit', 'ajax:success',
+      (event, data, ajax, status)=> @_replaceUpdatedItem(@_findEventRow(event), data)
+    @addAction '.delete_item', 'ajax:send',
+      (event, data, ajax, status)=> @_deleteItem(@_findEventRow(event))
+    @addAction '.js-itemForm', 'ajax:error',
+      (event, ajax, status, statusText)=> @_showFormErrors(ajax)
 
   _findEventForm: (event)->
     $(event.currentTarget).closest('.js-itemForm')
 
+  _findEventRow: (event)->
+    $(event.currentTarget).closest('.js-itemForm-item')
+
+  _findItemTable: ->
+    $('#items_list')
+
   _findFormItems: ($form)->
     $form.find('input, select, textarea, button')
+
+  _getFormErrors: (ajax)->
+    @_formatErrorTexts(JSON.parse(ajax.responseText).messages)
+
+  _formatErrorTexts: (messages)->
+    if messages.length > 1
+      messages
+        .map (message, index) -> return "* #{message}\n"
+        .join('')
+    else
+      messages[0]
+
+  _openEditForm: ($row)->
+    $button = $row.find('.js-openEditItemForm')
+    $form = $row.find('.js-item-form')
+
+    $button.hide()
+    $form.show()
+
+  _closeEditForm: ($row)->
+    $button = $row.find('.js-openEditItemForm')
+    $form = $row.find('.js-item-form')
+
+    $button.show()
+    $form.hide()
 
   _lockForm: ($form)->
     @_findFormItems($form).attr('disabled', true)
@@ -19,57 +68,27 @@ window.onomatopia.item = (
   _unlockForm: ($form)->
     @_findFormItems($form).attr('disabled', false)
 
+  _appendCreatedItem: ($form, data)->
+    $items = @_findItemTable()
+    $continuables = $form.find('.js-continuable')
+    $firstInput = $continuables.eq(0)
+
+    $items.append(data.html)
+    $continuables.val('')
+    setTimeout (-> $firstInput.focus()), 1  # execute after unlocking
+
+  _replaceUpdatedItem: ($row, data)->
+    $row.replaceWith(data.html);
+
+  _deleteItem: ($row)->
+    $row.remove()
+
+  _showFormErrors: (ajax)->
+    alert @_getFormErrors(ajax)
+
   __setup: ->
     $ => @__autoplay()
     return @
   __autoplay: ->
     @initialize()
-  addAction: (selector, type, listener) ->
-    window.onomatopia.$document.on(type, selector, listener)
 ).__setup();
-
-$(document).on 'ajax:success', '#new_item', (event, data, ajax, status)->
-  $form = $(event.currentTarget)
-  $form.find('[name="item[name]"], [name="item[quantity]"]')
-    .val('')
-  $('#items_list').append(data.html)
-
-$(document).on 'ajax:success', '.js-item-form', (event, data, ajax, status)->
-  $row =  $(event.currentTarget).closest('.item')
-
-  html = data.html
-  $row.replaceWith(html)
-
-$(document).on 'ajax:error', '#new_item, .js-item-form', (event, ajax, status, statusText)->
-  data = JSON.parse(ajax.responseText)
-  messages = data.messages
-
-  if messages.length > 1
-    text = messages
-      .map (message, index) -> return "* #{message}\n"
-      .join('')
-  else
-    text = messages[0]
-
-  alert text
-
-$(document).on 'ajax:send', '.delete_item', (event, data, ajax, status)->
-  $form = $(event.currentTarget)
-  $row = $form.closest('.item')
-  $row.remove()
-
-$(document).on 'click', '.js-openEditItemForm', (event)->
-  $row = $(event.currentTarget).closest('.item')
-  $button = $row.find('.js-openEditItemForm')
-  $form = $row.find('.js-item-form')
-
-  $button.hide()
-  $form.show()
-
-$(document).on 'click', '.js-hideEditItemForm', (event)->
-  $row = $(event.currentTarget).closest('.item')
-  $button = $row.find('.js-openEditItemForm')
-  $form = $row.find('.js-item-form')
-
-  $button.show()
-  $form.hide()
