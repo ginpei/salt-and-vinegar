@@ -4,9 +4,20 @@ unless window.onomatopia
   }
 window.onomatopia.item = (
   initialize: () ->
-    console.log window.onomatopia
+    @addAction '.js-itemForm', 'ajax:send',     (event, ajax)=> @_lockForm(@_findEventForm(event))
+    @addAction '.js-itemForm', 'ajax:complete', (event, ajax)=> @_unlockForm(@_findEventForm(event))
 
-    @addAction 'h1', 'click', (event) -> console.log event.type
+  _findEventForm: (event)->
+    $(event.currentTarget).closest('.js-itemForm')
+
+  _findFormItems: ($form)->
+    $form.find('input, select, textarea, button')
+
+  _lockForm: ($form)->
+    @_findFormItems($form).attr('disabled', true)
+
+  _unlockForm: ($form)->
+    @_findFormItems($form).attr('disabled', false)
 
   __setup: ->
     $ => @__autoplay()
@@ -16,16 +27,6 @@ window.onomatopia.item = (
   addAction: (selector, type, listener) ->
     window.onomatopia.$document.on(type, selector, listener)
 ).__setup();
-
-$(document).on 'ajax:send', '#new_item, .js-item-form', (event, ajax)->
-  $form = $(event.currentTarget)
-  $form.find('input, select, textarea, button')
-    .attr('disabled', true)
-
-$(document).on 'ajax:complete', '#new_item, .js-item-form', (event, ajax, status)->
-  $form = $(event.currentTarget)
-  $form.find('input, select, textarea, button')
-    .attr('disabled', false)
 
 $(document).on 'ajax:success', '#new_item', (event, data, ajax, status)->
   $form = $(event.currentTarget)
