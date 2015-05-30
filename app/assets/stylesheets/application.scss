@@ -23,6 +23,23 @@ main {
 
 // TODO: use modals
 // http://materializecss.com/modals.html
-.edit_item {
+.items-form-block {
   display: none;
+}
+
+@media (max-width: 640px) {
+  header {
+    padding-top: 0;
+  }
+  h1 {
+    font-size: 2em;
+    line-height: 1.5em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+    width: auto;
+  }
 }

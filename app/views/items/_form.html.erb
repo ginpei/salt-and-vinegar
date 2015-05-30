@@ -1,3 +1,8 @@
+<% if item.id %>
+  <%= form_for item, method: :delete, remote: true, html: { id: nil, class: 'delete_item' } do |f| %>
+    <%= f.button 'Destroy', class: 'btn-flat red-text waves-effect waves-light', type: 'submit' %>
+  <% end %>
+<% end %>
 <%= form_for(item, remote: true) do |f| %>
   <% if item.errors.any? %>
     <div id="error_explanation">
