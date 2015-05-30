@@ -1,6 +1,21 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+unless window.onomatopia
+  window.onomatopia = {
+    $document: $(document)
+  }
+window.onomatopia.item = (
+  initialize: () ->
+    console.log window.onomatopia
+
+    @addAction 'h1', 'click', (event) -> console.log event.type
+
+  __setup: ->
+    $ => @__autoplay()
+    return @
+  __autoplay: ->
+    @initialize()
+  addAction: (selector, type, listener) ->
+    window.onomatopia.$document.on(type, selector, listener)
+).__setup();
 
 $(document).on 'ajax:send', '#new_item, .js-item-form', (event, ajax)->
   $form = $(event.currentTarget)
