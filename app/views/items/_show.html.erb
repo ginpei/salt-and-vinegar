@@ -4,7 +4,7 @@
   <td><%= item.orderer %></td>
   <td>
     <button class="btn-flat teal-text waves-effect waves-light js-openEditItemForm">Edit</button>
-    <div class="items-form-block js-item-form">
+    <div class="items-form-block js-itemEditor is-hidden">
       <%= render partial: 'items/form', locals: { item: item } %>
     </div>
   </td>

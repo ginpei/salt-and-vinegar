@@ -1,8 +1,3 @@
-<% if item.id %>
-  <%= form_for item, method: :delete, remote: true, html: { id: nil, class: 'delete_item' } do |f| %>
-    <%= f.button 'Destroy', class: 'btn-flat red-text waves-effect waves-light', type: 'submit' %>
-  <% end %>
-<% end %>
 <%= form_for(item, remote: true, html: { class: "js-itemForm #{if item.id then 'js-itemForm-edit' else 'js-itemForm-new' end}" }) do |f| %>
   <% if item.errors.any? %>
     <div id="error_explanation">
@@ -38,4 +33,10 @@
     <% end %>
     <%= f.button 'Cancel', type: :button, class: 'btn waves-effect waves-light js-closeEditItemForm' if item.id %>
   </div>
+<% end %>
+
+<% if item.id %>
+  <%= form_for item, method: :delete, remote: true, html: { id: nil, class: 'delete_item' } do |f| %>
+    <%= f.button 'Destroy', class: 'btn-flat red-text waves-effect waves-light', type: 'submit' %>
+  <% end %>
 <% end %>

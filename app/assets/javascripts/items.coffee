@@ -31,6 +31,9 @@ window.onomatopia.item = (
   _findEventRow: (event)->
     $(event.currentTarget).closest('.js-itemForm-item')
 
+  _findRowForm: ($row)->
+    $row.find('.js-itemEditor')
+
   _findItemTable: ->
     $('#items_list')
 
@@ -49,18 +52,24 @@ window.onomatopia.item = (
       messages[0]
 
   _openEditForm: ($row)->
-    $button = $row.find('.js-openEditItemForm')
-    $form = $row.find('.js-item-form')
+    $form = @_findRowForm($row)
+    $cells = $row.children()
+    $formCell = $cells.first().clone()
+      .empty()
+      .attr('colspan', $cells.length)
 
-    $button.hide()
-    $form.show()
+    $cells.remove()
+    $formCell
+      .data('originals', $cells)
+      .append($form.clone().removeClass('is-hidden'))
+      .appendTo($row)
 
   _closeEditForm: ($row)->
-    $button = $row.find('.js-openEditItemForm')
-    $form = $row.find('.js-item-form')
+    $formCell = $row.children()
+    $cells = $formCell.data('originals')
 
-    $button.show()
-    $form.hide()
+    $formCell.remove()
+    $cells.appendTo($row)
 
   _lockForm: ($form)->
     @_findFormItems($form).attr('disabled', true)
