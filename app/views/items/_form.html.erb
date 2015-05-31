@@ -1,4 +1,4 @@
-<%= form_for(item, remote: true, html: { class: "js-itemForm #{if item.id then 'js-itemForm-edit' else 'js-itemForm-new' end}" }) do |f| %>
+<%= form_for item, remote: true, html: { class: "js-itemForm #{if item.id then 'js-itemForm-edit' else 'js-itemForm-new' end}" } do |f| %>
   <% if item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
@@ -28,7 +28,7 @@
 
   <div class="actions">
     <%= f.hidden_field :paper_id %>
-    <%= f.button(type: 'submit', class: "btn waves-effect waves-light") do %>
+    <%= f.button type: 'submit', class: "btn waves-effect waves-light" do %>
       <%= if item.id then 'Update Item' else 'Create Item' end %>
     <% end %>
     <%= f.button 'Cancel', type: :button, class: 'btn waves-effect waves-light js-closeEditItemForm' if item.id %>
