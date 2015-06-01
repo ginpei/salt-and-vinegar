@@ -21,6 +21,15 @@ main {
   padding: 0.5em 1em;
 }
 
+#items_list {
+  td {
+    word-break: break-all;
+  }
+  button {
+    word-break: normal;
+  }
+}
+
 .is-hidden {
   display: none;
 }
