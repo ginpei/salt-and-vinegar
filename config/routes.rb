@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/example' => 'miscellaneous#example'
+
   resources :items, except: [:index, :show, :new, :edit]
 
   resources :papers, param: :token, except: [:index]
