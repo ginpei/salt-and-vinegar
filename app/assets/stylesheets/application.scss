@@ -34,6 +34,13 @@ main {
 .is-hidden {
   display: none;
 }
+main.container {
+  margin-top: 2.1rem;
+
+  > h1:first-child {
+    margin-top: 0;
+  }
+}
 
 @media (max-width: 640px) {
   header {
@@ -46,12 +53,7 @@ main {
   .container {
     margin-left: 0;
     margin-right: 0;
-    margin-top: 2.1rem;
     width: auto;
-
-    > h1:first-child {
-      margin-top: 0;
-    }
   }
   th:first-child,
   td:first-child {
