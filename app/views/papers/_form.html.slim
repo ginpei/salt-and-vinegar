@@ -7,10 +7,10 @@
         - @paper.errors.full_messages.each do |message|
           li = message
 
-  .field
+  div.field
     = f.label :title
     = f.text_field :title
 
-  .right
+  div.right
     = button_tag(type: 'submit', class: "btn-large waves-effect waves-light")
-      | Create
+      = (if @paper.id then 'Update' else 'Create' end)
