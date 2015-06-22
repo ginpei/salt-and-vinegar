@@ -1,11 +1,14 @@
 class PapersController < ApplicationController
   before_action :set_paper, only: [:show, :edit, :update, :destroy]
+  before_action :add_recent_paper_id, only: [:show, :edit, :update]
 
   # GET /papers/1
   # GET /papers/1.json
   def show
     @item = @paper.items.new
     @items = @paper.items.all
+
+    @recent_papers = recent_papers
   end
 
   # GET /papers/new
@@ -66,5 +69,10 @@ class PapersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def paper_params
       params.require(:paper).permit(:title)
+    end
+
+    def add_recent_paper_id
+      ids = recent_paper_ids.unshift(@paper.id).uniq()
+      session[:recent_paper_ids] = ids
     end
 end

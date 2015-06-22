@@ -19,5 +19,11 @@
     <div class="grey lighten-4 teal-text c-url js-paper-url"><%= paper_url @paper %></div>
     <p><%= link_to 'Edit This Paper', edit_paper_path(@paper), class: 'btn' %></p>
     <p><%= link_to 'Create New Paper', new_paper_path, class: 'btn' %></p>
+    <h4 class="teal-text">Recent Papers</h4>
+    <ul>
+      <% @recent_papers.each do |paper| %>
+        <li><%= link_to paper.title, paper %></li>
+      <% end %>
+    </ul>
   </section>
 </main>
