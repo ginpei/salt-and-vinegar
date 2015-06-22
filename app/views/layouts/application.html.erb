@@ -12,11 +12,11 @@
 <%= yield %>
 
 <footer class="page-footer grey darken-1">
-  <div class="container">
-  <h5 class="white-text">FROG HOUSE</h5>
-  <p class="white-text text-lighten-4">私達はバンクーバーにあるクリエイター専用のシェアハウスです。皆の目標はただひとつ、世界に通用するクリエイターになること。私達はその登竜門としてバンクーバーを選びました。そのために必要な知識のほとんどはこのシェアハウスで共有することができます。</p>
-  </div>
-  <div class="footer-copyright"><small class="container">© 2015 Salt and Vinegar</small></div>
+  <nav class="container grey darken-1">
+    <%= link_to 'Home', root_path, class: 'btn-flat white-text' %>
+    <%= link_to 'Example', paper_path('example'), class: 'btn-fla white-textt' %>
+  </nav>
+  <div class="footer-copyright container"><small>System designed by Ginpei. Logo designed by Q.</small></div>
 </footer>
 </body>
 </html>
