@@ -17,6 +17,11 @@ main {
   padding: 0.5em 1em;
 }
 
+.home-bigLogo {
+  height: 483px;
+  width: 625px;
+}
+
 #items_list {
   td {
     line-height: 36px;
@@ -63,5 +68,10 @@ main.container {
   th:last-child,
   td:last-child {
     padding-right: 1.5rem;
+  }
+
+  .home-bigLogo {
+    height: auto;
+    width: 90%;
   }
 }
