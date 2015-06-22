@@ -1,0 +1,35 @@
+= form_for item, remote: true, html: { class: "js-itemForm #{if item.id then 'js-itemForm-edit' else 'js-itemForm-new' end}" } do |f|
+  - if item.errors.any?
+    div#error_explanation
+      h2 = "#{pluralize(item.errors.count, "error")} prohibited this item from being saved:"
+
+      ul
+        - item.errors.full_messages.each do |message|
+          li = message
+
+  div.right-align
+    = f.button 'Cancel', type: :button, class: 'btn-flat teal-text waves-effect waves-light js-closeEditItemForm' if item.id
+
+  .field
+    = f.label :name
+    br
+    = f.text_field :name, class: 'js-continuable', placeholder: 'Milk'
+
+  .field
+    = f.label :quantity
+    br
+    = f.text_field :quantity, class: 'js-continuable', placeholder: '4L'
+
+  .field
+    = f.label :orderer
+    br
+    = f.text_field :orderer, placeholder: 'Senna'
+
+  div.actions.right-align
+    = f.hidden_field :paper_id
+    = f.button type: 'submit', class: "btn waves-effect waves-light"
+      = (if item.id then 'Update Item' else 'Create Item' end)
+
+- if item.id
+  = form_for item, method: :delete, remote: true, html: { id: nil, class: 'item-deleteForm right-align' } do |f|
+    = f.button 'Destroy', class: 'btn red waves-effect waves-light', type: 'submit'

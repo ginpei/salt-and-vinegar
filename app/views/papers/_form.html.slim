@@ -1,0 +1,16 @@
+= form_for(@paper) do |f|
+  - if @paper.errors.any?
+    div#error_explanation
+      h2 = "#{pluralize(@paper.errors.count, "error")} prohibited this paper from being saved:"
+
+      ul
+        - @paper.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :title
+    = f.text_field :title
+
+  .right
+    = button_tag(type: 'submit', class: "btn-large waves-effect waves-light")
+      | Create

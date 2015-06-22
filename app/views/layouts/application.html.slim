@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title Salt and Vinegar
+    meta name="viewport" content="width=320px"
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  body
+    = yield
+
+    footer.page-footer.grey.darken-1
+      nav.container.grey.darken-1
+        a.btn-flat.white-text href="#{ root_path }" Home
+        a.btn-flat.white-text href="#{ paper_path('example') }" Example
+      div.footer-copyright.container
+        small System designed by Ginpei. Logo designed by Q.
