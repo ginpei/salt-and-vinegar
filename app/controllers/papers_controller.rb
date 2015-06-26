@@ -5,6 +5,8 @@ class PapersController < ApplicationController
   # GET /papers/1
   # GET /papers/1.json
   def show
+    @title = @paper.title
+
     @item = @paper.items.new
     @items = @paper.items.all
 
@@ -13,11 +15,14 @@ class PapersController < ApplicationController
 
   # GET /papers/new
   def new
+    @title = 'Create New Paper'
+
     @paper = Paper.new
   end
 
   # GET /papers/1/edit
   def edit
+    @title = "Edit - #{@paper.title}"
   end
 
   # POST /papers

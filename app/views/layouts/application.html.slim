@@ -1,7 +1,11 @@
 doctype html
 html
   head
-    title Salt and Vinegar
+    title
+      - if @title
+        = "#{@title} - Salt and Vinegar"
+      - else
+        | Salt and Vinegar
     meta name="viewport" content="width=320px"
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
