@@ -14,7 +14,7 @@ main {
   -webkit-flex: 1;
 }
 input[type] {
-  font-size: 16px;
+  font-size: 16px;  /* min value to prevent auto zooming on iOS */
 }
 .c-url {
   padding: 0.5em 1em;
