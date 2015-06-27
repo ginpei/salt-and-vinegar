@@ -7,6 +7,8 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.save
     render_item_json @item
+
+    session[:orderer] = @item.orderer
   end
 
   # PATCH/PUT /items/1

@@ -9,6 +9,7 @@ class PapersController < ApplicationController
 
     @item = @paper.items.new
     @items = @paper.items.all
+    @item.orderer = session[:orderer]
 
     @recent_papers = recent_papers
   end
