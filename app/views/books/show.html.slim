@@ -1,0 +1,31 @@
+header.teal.darken-1.z-depth-1
+  div.container
+    h1.white-text = @paper.title
+
+main
+  div#notice.container.center-align.green-text = notice
+
+  = render 'items/index'
+
+  section.container
+    h3.teal-text Add
+    = render partial: 'items/form', locals: { item: @item }
+
+  section.container
+    h3.teal-text Manage
+
+    h4.teal-text This Paper
+    div Don't forget this URL!
+    div.grey.lighten-4.teal-text.c-url.js-paper-url = paper_url @paper
+    p
+      a href="#{edit_paper_path(@paper)}" Edit This Paper
+
+    h4.teal-text New Paper
+    p
+      a href="#{new_paper_path}" Create New Paper
+
+    h4.teal-text Recent Papers
+    ul
+      - @recent_papers.each do |paper|
+        li
+          a href="#{edit_paper_path(paper)}" = paper.title

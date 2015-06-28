@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506000902) do
+ActiveRecord::Schema.define(version: 20150628214442) do
+
+  create_table "books", force: :cascade do |t|
+    t.string   "name"
+    t.string   "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "books", ["token"], name: "index_books_on_token", unique: true
 
   create_table "items", force: :cascade do |t|
     t.integer  "paper_id",   null: false
@@ -28,9 +37,7 @@ ActiveRecord::Schema.define(version: 20150506000902) do
     t.string   "title",      null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "token",      null: false
+    t.integer  "book_id"
   end
-
-  add_index "papers", ["token"], name: "index_papers_on_token", unique: true
 
 end
