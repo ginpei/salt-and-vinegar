@@ -2,7 +2,7 @@
 
 Manage what we want and should buy.
 
-![](public/logo-on-the-bottole.jpg)
+![](public/logo-on-the-bottle.png)
 
 ## Requires
 
