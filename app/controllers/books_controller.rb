@@ -11,6 +11,7 @@ class BooksController < ApplicationController
   # GET /books/1.json
   def show
     @title = @book.name
+    @papers = @book.papers.reverse
     @paper = @book.papers.last
 
     @items = @paper.items.all

@@ -6,6 +6,7 @@ class PapersController < ApplicationController
   # GET /papers/1.json
   def show
     @title = @paper.title
+    @papers = @book.papers.reverse
 
     @item = @paper.items.new
     @items = @paper.items.all

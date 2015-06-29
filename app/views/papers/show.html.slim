@@ -15,9 +15,13 @@ main
   section.container
     h3.teal-text Manage
 
-    h4.teal-text Papers
+    h4.teal-text Paper
     ul
       li
         a href="#{edit_book_paper_path(@book, @paper)}" Edit This Paper
-      li
-        a href="#{new_book_paper_path(@book)}" Create New Paper
+
+    h4.teal-text History
+    ul
+      - @papers.each do |paper|
+        li
+          a href="#{book_paper_path(@book, paper)}" = paper.title
