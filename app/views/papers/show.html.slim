@@ -3,6 +3,9 @@ header.teal.darken-1.z-depth-1
     h1.white-text = @book.name
 
 main
+  p.container
+    a href="#{book_path @book}" Back to the book
+
   h2.container.teal-text = @paper.title
 
   div#notice.container.center-align.green-text = notice
@@ -10,15 +13,7 @@ main
   = render 'items/index'
 
   section.container
-    h3.teal-text Add
-    = render partial: 'items/form', locals: { item: @item }
-
-  section.container
     h3.teal-text Manage
-
-    h4.teal-text URL
-    div Don't forget this URL!
-    div.grey.lighten-4.teal-text.c-url.js-paper-url = book_url @book
 
     h4.teal-text Papers
     ul

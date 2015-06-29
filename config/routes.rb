@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  resources :books, param: :token  # , except: [:index]
+  resources :books, param: :token do
+    resources :papers
+  end
+
 
   get '/example' => 'miscellaneous#example'
 
   resources :items, except: [:index, :show, :new, :edit]
-
-  resources :papers
 
   root 'miscellaneous#home'
 

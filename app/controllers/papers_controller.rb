@@ -1,4 +1,5 @@
 class PapersController < ApplicationController
+  before_action :set_book
   before_action :set_paper, only: [:show, :edit, :update, :destroy]
 
   # GET /papers/1
@@ -15,7 +16,7 @@ class PapersController < ApplicationController
   def new
     @title = 'Create New Paper'
 
-    @paper = Paper.new
+    @paper = @book.papers.new
   end
 
   # GET /papers/1/edit
@@ -26,11 +27,11 @@ class PapersController < ApplicationController
   # POST /papers
   # POST /papers.json
   def create
-    @paper = Paper.new(paper_params)
+    @paper = @book.papers.new(paper_params)
 
     respond_to do |format|
       if @paper.save
-        format.html { redirect_to @paper, notice: 'Paper was successfully created.' }
+        format.html { redirect_to @book, notice: 'Paper was successfully created.' }
         format.json { render :show, status: :created, location: @paper }
       else
         format.html { render :new }
@@ -44,7 +45,7 @@ class PapersController < ApplicationController
   def update
     respond_to do |format|
       if @paper.update(paper_params)
-        format.html { redirect_to @paper, notice: 'Paper was successfully updated.' }
+        format.html { redirect_to [@book, @paper], notice: 'Paper was successfully updated.' }
         format.json { render :show, status: :ok, location: @paper }
       else
         format.html { render :edit }
