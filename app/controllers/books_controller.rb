@@ -14,8 +14,8 @@ class BooksController < ApplicationController
     @paper = @book.papers.last
 
     @items = @paper.items.all
-    @item = @paper.items.new
-    @item.orderer = session[:orderer]
+    @new_item = @paper.items.new
+    @new_item.orderer = session[:orderer]
   end
 
   # GET /books/new
