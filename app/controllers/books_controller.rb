@@ -13,8 +13,8 @@ class BooksController < ApplicationController
     @title = @book.name
     @paper = @book.papers.last
 
-    @item = @paper.items.new
     @items = @paper.items.all
+    @item = @paper.items.new
     @item.orderer = session[:orderer]
   end
 
