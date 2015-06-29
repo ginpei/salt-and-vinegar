@@ -26,9 +26,3 @@ main
         a href="#{edit_paper_path(@paper)}" Edit This Paper
       li
         a href="#{new_paper_path}" Create New Paper
-
-    h4.teal-text Recent Papers
-    ul
-      - @recent_papers.each do |paper|
-        li
-          a href="#{edit_paper_path(paper)}" = paper.title

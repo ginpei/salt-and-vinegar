@@ -1,6 +1,5 @@
 class PapersController < ApplicationController
   before_action :set_paper, only: [:show, :edit, :update, :destroy]
-  before_action :add_recent_paper_id, only: [:show, :edit, :update]
 
   # GET /papers/1
   # GET /papers/1.json
@@ -10,8 +9,6 @@ class PapersController < ApplicationController
     @item = @paper.items.new
     @items = @paper.items.all
     @item.orderer = session[:orderer]
-
-    @recent_papers = recent_papers
   end
 
   # GET /papers/new
@@ -61,24 +58,23 @@ class PapersController < ApplicationController
   def destroy
     @paper.destroy
     respond_to do |format|
-      format.html { redirect_to papers_url, notice: 'Paper was successfully destroyed.' }
+      format.html { redirect_to @book, notice: 'Paper was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+    def set_book
+      @book = Book.find_by_token(params[:book_token])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_paper
-      @paper = Paper.find_by_token(params[:token])
+      @paper = @book.papers.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def paper_params
       params.require(:paper).permit(:title)
-    end
-
-    def add_recent_paper_id
-      ids = recent_paper_ids.unshift(@paper.id).uniq()
-      session[:recent_paper_ids] = ids
     end
 end
