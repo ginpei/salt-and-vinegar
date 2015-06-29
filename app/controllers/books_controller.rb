@@ -10,7 +10,7 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
-    @title = @book.title
+    @title = @book.name
     @paper = @book.papers.last
 
     @item = @paper.items.new

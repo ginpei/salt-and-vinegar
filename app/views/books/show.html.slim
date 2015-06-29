@@ -1,8 +1,10 @@
 header.teal.darken-1.z-depth-1
   div.container
-    h1.white-text = @paper.title
+    h1.white-text = @book.name
 
 main
+  h2.container.teal-text = @paper.title
+
   div#notice.container.center-align.green-text = notice
 
   = render 'items/index'
@@ -14,15 +16,16 @@ main
   section.container
     h3.teal-text Manage
 
-    h4.teal-text This Paper
+    h4.teal-text URL
     div Don't forget this URL!
-    div.grey.lighten-4.teal-text.c-url.js-paper-url = paper_url @paper
-    p
-      a href="#{edit_paper_path(@paper)}" Edit This Paper
+    div.grey.lighten-4.teal-text.c-url.js-paper-url = book_url @book
 
-    h4.teal-text New Paper
-    p
-      a href="#{new_paper_path}" Create New Paper
+    h4.teal-text Papers
+    ul
+      li
+        a href="#{edit_paper_path(@paper)}" Edit This Paper
+      li
+        a href="#{new_paper_path}" Create New Paper
 
     h4.teal-text Recent Papers
     ul
