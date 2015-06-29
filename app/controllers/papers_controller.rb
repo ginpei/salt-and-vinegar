@@ -18,6 +18,7 @@ class PapersController < ApplicationController
     @title = 'Create New Paper'
 
     @paper = @book.papers.new
+    @paper.title = Time.now.strftime('%Y-%m-%d')
   end
 
   # GET /papers/1/edit
