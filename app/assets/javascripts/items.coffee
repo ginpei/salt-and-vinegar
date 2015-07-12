@@ -20,7 +20,7 @@ window.onomatopia.item = (
       (event, data, ajax, status)=> @_appendCreatedItem(@_findEventForm(event), data)
     @addAction '.js-itemForm-edit', 'ajax:success',
       (event, data, ajax, status)=> @_replaceUpdatedItem(@_findEventRow(event), data)
-    @addAction '.delete_item', 'ajax:send',
+    @addAction '.js-itemDeleteForm', 'ajax:send',
       (event, data, ajax, status)=> @_deleteItem(@_findEventRow(event))
     @addAction '.js-itemForm', 'ajax:error',
       (event, ajax, status, statusText)=> @_showFormErrors(ajax)

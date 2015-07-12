@@ -31,5 +31,5 @@
       = (if item.id then 'Update Item' else 'Create Item' end)
 
 - if item.id
-  = form_for item, method: :delete, remote: true, html: { id: nil, class: 'item-deleteForm right-align' } do |f|
+  = form_for item, method: :delete, remote: true, html: { id: nil, class: 'item-deleteForm right-align js-itemDeleteForm' } do |f|
     = f.button 'Destroy', class: 'btn red waves-effect waves-light', type: 'submit'
