@@ -52,3 +52,5 @@ group :development, :test do
 end
 
 gem 'slim-rails'
+gem 'omniauth'
+gem 'omniauth-twitter'
