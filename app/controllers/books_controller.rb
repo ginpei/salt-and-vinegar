@@ -11,8 +11,8 @@ class BooksController < ApplicationController
   # GET /books/1.json
   def show
     @title = @book.name
-    @papers = @book.papers.reverse
-    @paper = @book.papers.last
+    @papers = @book.papers.order('created_at DESC')
+    @paper = @papers.first
 
     @items = @paper.items.all
     @new_item = @paper.items.new
