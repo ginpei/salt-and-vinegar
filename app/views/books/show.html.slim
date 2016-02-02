@@ -3,7 +3,12 @@ header.teal.darken-1.z-depth-1
     h1.white-text = @book.name
 
 main
-  h2.container.teal-text = @paper.title
+  h2.container.teal-text
+    a.teal-text href="#{edit_book_paper_path(@book, @paper)}"
+      = @paper.title
+
+  div.container.right-align
+    a.btn-flat.teal-text href="#{new_book_paper_path(@book)}" Turn Over The Page→
 
   div#notice.container.center-align.green-text = notice
 

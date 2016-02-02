@@ -11,6 +11,15 @@
     = f.label :title
     = f.text_field :title
 
+  - if @last_paper
+    div.field
+      p Copy Items From Last Paper
+      ul
+        - @last_items.each do |item|
+          li
+            input id="item-#{item.id}" name="last_item[]" value="#{item.id}" type="checkbox"
+            label for="item-#{item.id}" = item.name
+
   div.right
     = button_tag(type: 'submit', class: "btn-large waves-effect waves-light")
       = (if @paper.id then 'Update' else 'Create' end)
