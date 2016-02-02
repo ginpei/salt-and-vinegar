@@ -17,7 +17,7 @@ class PapersController < ApplicationController
   def new
     @title = 'Create New Paper'
 
-    @last_paper = @book.last_paper
+    @last_paper = @book.current_paper
     @last_items = @last_paper.items
 
     @paper = @book.papers.new

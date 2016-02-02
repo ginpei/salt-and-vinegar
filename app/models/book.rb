@@ -12,13 +12,17 @@ class Book < ActiveRecord::Base
     self.token = SecureRandom.uuid
   end
 
+  def current_paper
+    papers.order('created_at DESC').first
+  end
+
   def last_paper
-    papers.last
+    papers.order('created_at DESC').at(1)
   end
 
   # Create a new paper with items copied from last paper
   def turn_over(attr, item_ids)
-    last_paper = self.last_paper
+    last_paper = self.current_paper
     paper = papers.new(attr)
     item_ids.each do |item_id|
       last_item = last_paper.items.find(item_id)

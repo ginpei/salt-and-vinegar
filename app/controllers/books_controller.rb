@@ -12,7 +12,7 @@ class BooksController < ApplicationController
   def show
     @title = @book.name
     @papers = @book.papers.order('created_at DESC')
-    @paper = @papers.first
+    @paper = @book.current_paper
 
     @items = @paper.items.all
     @new_item = @paper.items.new
