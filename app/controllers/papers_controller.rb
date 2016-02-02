@@ -17,6 +17,9 @@ class PapersController < ApplicationController
   def new
     @title = 'Create New Paper'
 
+    @last_paper = @book.last_paper
+    @last_items = @last_paper.items
+
     @paper = @book.papers.new
     @paper.title = Time.now.strftime('%Y-%m-%d')
   end
@@ -29,7 +32,7 @@ class PapersController < ApplicationController
   # POST /papers
   # POST /papers.json
   def create
-    @paper = @book.papers.new(paper_params)
+    @paper = @book.turn_over(paper_params, params[:last_item])
 
     respond_to do |format|
       if @paper.save
