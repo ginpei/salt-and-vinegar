@@ -1,0 +1,23 @@
+header.teal.darken-1.z-depth-1
+  div.container
+    h1.white-text = @book.name
+
+main.container
+  h2.teal-text Copy Items From Recent Papers
+  = form_tag(book_copy_recent_items_path(@book), method: 'POST') do |f|
+    - @recent_papers.each do |paper|
+      div.field
+        h3.teal-text = paper.title
+        ul
+          - paper.items.each do |item|
+            li
+              input id="item-#{item.id}" name="last_item[#{paper.id}][]" value="#{item.id}" type="checkbox"
+              label for="item-#{item.id}"
+                = item.name
+                - if item.quantity.present?
+                  = " x#{item.quantity}"
+                - if item.orderer.present?
+                  = " by #{item.orderer}"
+
+    div.right
+      = button_tag('Add', type: 'submit', class: "btn-large waves-effect waves-light")

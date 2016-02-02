@@ -28,6 +28,15 @@ class BooksController < ApplicationController
   def edit
   end
 
+  # GET /papers/1/select_recent_items
+  def select_recent_items
+    @book = Book.find_by_token(params[:book_token])
+    @current_paper = @book.current_paper
+    @recent_papers = @book.recent_papers
+
+    @title = "Edit - #{@book.current_paper.title}"
+  end
+
   # POST /books
   # POST /books.json
   def create
@@ -51,6 +60,22 @@ class BooksController < ApplicationController
   def update
     respond_to do |format|
       if @book.update(book_params)
+        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+        format.json { render :show, status: :ok, location: @book }
+      else
+        format.html { render :edit }
+        format.json { render json: @book.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # POST /papers/1/copy_recent_items
+  def copy_recent_items
+    @book = Book.find_by_token(params[:book_token])
+    @paper = @book.copy_recent_items(params[:last_item])
+
+    respond_to do |format|
+      if @paper.save
         format.html { redirect_to @book, notice: 'Book was successfully updated.' }
         format.json { render :show, status: :ok, location: @book }
       else
