@@ -16,6 +16,8 @@ main
 
   section.container
     h3.teal-text Add
+    div.right-align
+      a.btn-flat.teal-text href="#{book_select_recent_items_path(@book)}" Copy Items From Recent Papers...
     = render partial: 'items/form', locals: { item: @new_item }
 
   section.container

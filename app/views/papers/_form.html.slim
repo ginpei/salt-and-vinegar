@@ -18,7 +18,12 @@
         - @last_items.each do |item|
           li
             input id="item-#{item.id}" name="last_item[]" value="#{item.id}" type="checkbox"
-            label for="item-#{item.id}" = item.name
+            label for="item-#{item.id}"
+              = item.name
+              - if item.quantity.present?
+                = " x#{item.quantity}"
+              - if item.orderer.present?
+                = " by #{item.orderer}"
 
   div.right
     = button_tag(type: 'submit', class: "btn-large waves-effect waves-light")
