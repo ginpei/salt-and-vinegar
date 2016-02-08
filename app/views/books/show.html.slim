@@ -21,6 +21,11 @@ main
     = render partial: 'items/form', locals: { item: @new_item }
 
   section.container
+    h3.teal-text Shopping
+
+    a.btn.waves-effect href="#{shopping_book_paper_path(@book, @paper)}" wafes-light Go to Shopping Mode
+
+  section.container
     h3.teal-text Manage
 
     h4.teal-text URL

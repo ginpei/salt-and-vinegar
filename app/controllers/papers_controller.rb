@@ -1,6 +1,6 @@
 class PapersController < ApplicationController
   before_action :set_book
-  before_action :set_paper, only: [:show, :edit, :update, :destroy]
+  before_action :set_paper, only: [:show, :edit, :shopping, :update, :destroy]
 
   # GET /papers/1
   # GET /papers/1.json
@@ -27,6 +27,16 @@ class PapersController < ApplicationController
   # GET /papers/1/edit
   def edit
     @title = "Edit - #{@paper.title}"
+  end
+
+  # GET /papers/1/shopping
+  def shopping
+    @title = @paper.title
+    @papers = @book.papers.reverse
+
+    @item = @paper.items.new
+    @items = @paper.items.all
+    @item.orderer = session[:orderer]
   end
 
   # POST /papers

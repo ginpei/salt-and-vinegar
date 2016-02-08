@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   resources :books, param: :token do
-    resources :papers
+    resources :papers do
+      member do
+        get 'shopping'
+      end
+    end
     get 'select_recent_items'
     post 'copy_recent_items'
   end

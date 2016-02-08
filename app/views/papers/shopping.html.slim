@@ -1,0 +1,16 @@
+header.teal.darken-1.z-depth-1
+  div.container
+    h1.white-text = @book.name
+
+main
+  p.container
+    a href="#{book_path @book}" Back to the book
+
+  h2.container.teal-text = @paper.title
+
+  div#notice.container.center-align.green-text = notice
+
+  = render 'items/shopping_index'
+
+  p.container
+    em NOTE: These checkboxes have no influence.
