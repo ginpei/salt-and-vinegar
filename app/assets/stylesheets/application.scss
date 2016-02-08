@@ -50,6 +50,20 @@ main.container {
   }
 }
 
+// ----------------------------------------------------------------
+// Overwrite Materialize
+
+.collection {
+  &-item {
+    & > label {
+      width: 100%;
+    }
+  }
+}
+
+// ----------------------------------------------------------------
+// Mobile
+
 @media (max-width: 640px) {
   header {
     padding-top: 0;
