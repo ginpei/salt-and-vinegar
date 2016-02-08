@@ -13,9 +13,9 @@ html
   body
     = yield
 
-    footer.page-footer.grey.darken-1
-      nav.container.grey.darken-1
-        a.btn-flat.white-text href="#{ root_path }" Home
-        a.btn-flat.white-text href="#{ book_path('example') }" Example
-      div.footer-copyright.container
+    footer.app-footer
+      nav.app-footer-nav
+        a href="#{ root_path }" Home
+        a href="#{ book_path('example') }" Example
+      div.app-footer-copyright
         small System designed by Ginpei. Logo designed by Q.
