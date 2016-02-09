@@ -26,7 +26,9 @@ window.onomatopia.item = (
     @addAction '.js-itemDeleteForm', 'ajax:send',
       (event, data, ajax, status)=> @_deleteItem(@_findEventRow(event))
     @addAction '.js-itemForm', 'ajax:error',
-      (event, ajax, status, statusText)=> @_showFormErrors(ajax)
+      (event, ajax, status, statusText)=>
+        @_unlockForm(@_findEventForm(event))
+        @_showFormErrors(ajax)
 
   _findEventForm: (event)->
     $(event.currentTarget).closest('.js-itemForm')
