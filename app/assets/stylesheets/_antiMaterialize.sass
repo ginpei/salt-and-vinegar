@@ -4,11 +4,33 @@ nav
   box-shadow: none
   color: inherit
 
+h1,
+h2,
+h3,
+a,
+.btn-flat
+  @extend .baseColor-text
+
+h3
+  font-size: 2rem
+
+.btn
+  @extend .white-text
+
 .outerContainer
   @extend .container
   width: auto
 
+.antiContainer
+  margin-left: calc(-5vw - 1.5rem)
+  margin-right: calc(-5vw - 1.5rem)
+
+@media only screen and (min-width: 601px)
+  .antiContainer
+    margin-left: 0
+    margin-right: 0
+
 .baseColor
-  @extend .teal
+  @extend .teal.darken-1
 .baseColor-text
   @extend .teal-text

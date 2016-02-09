@@ -1,49 +1,86 @@
 header.app-header
-  h1.app-header-title
+  div.app-header-title
     a href="#{root_path}"
       img.app-header-logo src="/logo-on-the-bottle.png" alt=""
     a href="#{book_path(@book)}"
       = @book.name
 
-main
-  h2.container.teal-text
-    a.teal-text href="#{edit_book_paper_path(@book, @paper)}"
+main.app-main
+
+  h1.mod-book-paperTitle
+    a href="#{edit_book_paper_path(@book, @paper)}"
       = @paper.title
 
-  div.container.right-align
-    a.btn-flat.teal-text href="#{new_book_paper_path(@book)}" Turn Over The Page→
+  section
+    p Flick items to show management menus.
+    / = render 'items/index'
+    ul.collection.antiContainer
+      - @items.each do |item|
+        li.collection-item.mod-item-collection-item
+          span.mod-item-collection-item-name = item.name
+          - if item.quantity.present?
+            span.mod-item-collection-item-quantity x#{item.quantity}
+          - if item.orderer.present?
+            span.right.mod-item-collection-item-orderer by #{item.orderer}
 
-  div#notice.container.center-align.green-text = notice
+  section
+    h2 Add
 
-  = render 'items/index'
+    / = render partial: 'items/form', locals: { item: @new_item }
+    form
+      div.field
+        label for="item_list" Items
+        textarea#item_list.materialize-textarea type="text" placeholder="Avocado x12"
+      div.field
+        label for="item_name" Name
+        input#item_name type="text" placeholder="Alice"
+      div.right-align
+        a.btn href="#{book_select_recent_items_path(@book)}"
+          i.material-icons.left library_add
+          | Add Items
+    p
+      strong NOTE:
+      |  To specify quantity, use following format. In this case, the quantities of avocado is 12, and one of milk is 10L. Ones of salt and vinegar are not specified.
+    pre.teal.lighten-5
+        |
+          Salt
+          Avocado x 12
+          Vinegaer
+          Milk x 10L
 
-  section.container
-    h3.teal-text Add
+    h3 Copy From History
+    p You can chose items from recent papers.
     div.right-align
-      a.btn-flat.teal-text href="#{book_select_recent_items_path(@book)}" Copy Items From Recent Papers...
-    = render partial: 'items/form', locals: { item: @new_item }
+      a.btn href="#{book_select_recent_items_path(@book)}"
+        i.material-icons.left playlist_add
+        | Choose...
 
-  section.container
-    h3.teal-text Shopping
+  section
+    h2 Shopping
+    p Now you are at a store? Use shopping mode to manage items which you got or not yet!
+    div.right-align
+      a.btn href="#{shopping_book_paper_path(@book, @paper)}"
+        i.material-icons.left shopping_cart
+        | Start
+    p Then input bills and see how much each of you has to pay.
+    div.right-align
+      a.btn href="#{shopping_book_paper_path(@book, @paper)}"
+        i.material-icons.left speaker_notes
+        | Account
 
-    a.btn.waves-effect href="#{shopping_book_paper_path(@book, @paper)}" wafes-light Go to Shopping Mode
+  section
+    h2 Turn over
+    p Create new paper for next shopping.
+    div.right-align
+      a.btn href="#{new_book_paper_path(@book)}"
+        i.material-icons.left note_add
+        | New...
 
-  section.container
-    h3.teal-text Manage
 
-    h4.teal-text URL
-    div Don't forget this URL!
-    div.grey.lighten-4.teal-text.c-url.js-paper-url = book_url @book
-
-    h4.teal-text Paper
+  section
+    h2 History
+    p Hare are 5 recent papers.
     ul
-      li
-        a href="#{edit_book_paper_path(@book, @paper)}" Edit This Paper
-      li
-        a href="#{new_book_paper_path(@book)}" Create New Paper
-
-    h4.teal-text History
-    ul
-      - @papers.each do |paper|
+      - @book.recent_papers.each do |paper|
         li
           a href="#{book_paper_path(@book, paper)}" = paper.title
