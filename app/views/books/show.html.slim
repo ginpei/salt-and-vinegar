@@ -26,27 +26,16 @@ main.app-main
   section
     h2 Add
 
-    = render partial: 'items/form', locals: { item: @new_item }
-    / form
-      div.field
-        label for="item_list" Items
-        textarea#item_list.materialize-textarea type="text" placeholder="Avocado x12"
-      div.field
-        label for="item_name" Name
-        input#item_name type="text" placeholder="Alice"
-      div.right-align
-        a.btn href="#{book_select_recent_items_path(@book)}"
-          i.material-icons.left library_add
-          | Add Items
-      p
-        strong NOTE:
-        |  To specify quantity, follow the format below. In this example, the quantity of avocado is 12, and that of milk is 3. Salt and vinegar are not specified.
-      pre.teal.lighten-5
-          |
-            Salt
-            Avocado x 12
-            Vinegaer
-            Milk x 3
+    = render partial: 'items/multi_form', locals: { item: @new_item }
+    p
+      strong NOTE:
+      |  To specify quantity, follow the format below. In this example, the quantity of avocado is 12, and that of milk is 3. Salt and vinegar are not specified.
+    pre.teal.lighten-5
+        |
+          Salt
+          Avocado x 12
+          Vinegaer
+          Milk x 3
 
     h3 Copy From History
     p You can choose items from recent papers.

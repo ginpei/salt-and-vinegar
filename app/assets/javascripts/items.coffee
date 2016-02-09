@@ -17,7 +17,10 @@ window.onomatopia.item = (
     @addAction '.js-itemForm', 'ajax:complete',
       (event, ajax)=> @_unlockForm(@_findEventForm(event))
     @addAction '.js-itemForm-new', 'ajax:success',
-      (event, data, ajax, status)=> @_appendCreatedItem(@_findEventForm(event), data)
+      (event, data, ajax, status)=>
+        $form = @_findEventForm(event)
+        @_appendCreatedItem($form, data)
+        @_scrollToForm(@_findEventForm(event))
     @addAction '.js-itemForm-edit', 'ajax:success',
       (event, data, ajax, status)=> @_replaceUpdatedItem(@_findEventRow(event), data)
     @addAction '.js-itemDeleteForm', 'ajax:send',
@@ -85,6 +88,30 @@ window.onomatopia.item = (
     $items.append(data.html)
     $continuables.val('')
     setTimeout (-> $firstInput.focus()), 1  # execute after unlocking
+
+    message = @_makeMessageForNewItems(data.items)
+    Materialize.toast(message, 4000)
+
+  _makeMessageForNewItems: (items)->
+    item_length = items.length
+    if item_length is 1
+      "#{@_safeItemNameForToast(items[0].name, 16)} is added."
+    else if item_length is 2
+      "#{@_safeItemNameForToast(items[0].name, 8)} and #{@_safeItemNameForToast(items[1].name, 8)} are added."
+    else
+      "#{item_length} items are added."
+
+  _safeItemNameForToast: (name, length)->
+    if name.length > length
+      name_shortened = name.slice(0, length-2) + '...'
+    else
+      name_shortened = name
+    $('<div>').text(name_shortened).html()
+
+  _scrollToForm: ($form)->
+    MARGIN = 50
+    top = $form.offset().top - MARGIN
+    window.onomatopia.$document.scrollTop(top)
 
   _replaceUpdatedItem: ($row, data)->
     $row.replaceWith(data.html);
