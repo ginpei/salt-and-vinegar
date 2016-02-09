@@ -10,21 +10,28 @@ window.onomatopia.item = (
   initialize: () ->
     @addAction '.js-openEditItemForm', 'click',
       (event)=> @_openEditForm(@_findEventRow(event))
+
     @addAction '.js-closeEditItemForm', 'click',
       (event)=> @_closeEditForm(@_findEventRow(event))
+
     @addAction '.js-itemForm', 'ajax:send',
       (event, ajax)=> @_lockForm(@_findEventForm(event))
+
     @addAction '.js-itemForm', 'ajax:complete',
       (event, ajax)=> @_unlockForm(@_findEventForm(event))
+
     @addAction '.js-itemForm-new', 'ajax:success',
       (event, data, ajax, status)=>
         $form = @_findEventForm(event)
         @_appendCreatedItem($form, data)
         @_scrollToForm(@_findEventForm(event))
+
     @addAction '.js-itemForm-edit', 'ajax:success',
       (event, data, ajax, status)=> @_replaceUpdatedItem(@_findEventRow(event), data)
+
     @addAction '.js-itemDeleteForm', 'ajax:send',
       (event, data, ajax, status)=> @_deleteItem(@_findEventRow(event))
+
     @addAction '.js-itemForm', 'ajax:error',
       (event, ajax, status, statusText)=>
         @_unlockForm(@_findEventForm(event))
