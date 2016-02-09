@@ -1,6 +1,13 @@
-header.teal.darken-1.z-depth-1
-  div.container
-    h1.white-text = "Editing Paper of #{@book.name}"
+header.app-header
+  div.app-header-title
+    a href="#{root_path}"
+      img.app-header-logo src="/logo-on-the-bottle.png" alt=""
+    a href="#{book_path(@book)}"
+      = @book.name
 
-main.container
+main.app-main
+  p
+    a href="#{book_path(@book)}" Back to the Book
+
+  h1.mod-book-paperTitle Edit Paper
   = render 'form'
