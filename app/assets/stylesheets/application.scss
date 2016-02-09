@@ -4,6 +4,25 @@
 @import "book";
 @import "item";
 
+// ----------------------------------------------------------------
+// remove after implementation
+#items_list {
+  td {
+    line-height: 36px;
+    vertical-align: top;
+    word-break: break-all;
+  }
+  button {
+    word-break: normal;
+  }
+}
+.item-deleteForm {
+  margin-top: 4em;
+}
+
+.is-hidden {
+  display: none;
+}
 
 // ----------------------------------------------------------------
 

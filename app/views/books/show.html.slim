@@ -12,9 +12,9 @@ main.app-main
       = @paper.title
 
   section
-    p Flick items to show management menus.
-    / = render 'items/index'
-    ul.collection.antiContainer
+    / p Flick items to show management menus.
+    = render 'items/index'
+    / ul.collection.antiContainer
       - @items.each do |item|
         li.collection-item.mod-item-collection-item
           span.mod-item-collection-item-name = item.name
@@ -26,8 +26,8 @@ main.app-main
   section
     h2 Add
 
-    / = render partial: 'items/form', locals: { item: @new_item }
-    form
+    = render partial: 'items/form', locals: { item: @new_item }
+    / form
       div.field
         label for="item_list" Items
         textarea#item_list.materialize-textarea type="text" placeholder="Avocado x12"
@@ -38,15 +38,15 @@ main.app-main
         a.btn href="#{book_select_recent_items_path(@book)}"
           i.material-icons.left library_add
           | Add Items
-    p
-      strong NOTE:
-      |  To specify quantity, use following format. In this case, the quantities of avocado is 12, and one of milk is 10L. Ones of salt and vinegar are not specified.
-    pre.teal.lighten-5
-        |
-          Salt
-          Avocado x 12
-          Vinegaer
-          Milk x 10L
+      p
+        strong NOTE:
+        |  To specify quantity, use following format. In this case, the quantities of avocado is 12, and one of milk is 10L. Ones of salt and vinegar are not specified.
+      pre.teal.lighten-5
+          |
+            Salt
+            Avocado x 12
+            Vinegaer
+            Milk x 10L
 
     h3 Copy From History
     p You can chose items from recent papers.
@@ -62,8 +62,8 @@ main.app-main
       a.btn href="#{shopping_book_paper_path(@book, @paper)}"
         i.material-icons.left shopping_cart
         | Start
-    p Then input bills and see how much each of you has to pay.
-    div.right-align
+    / p Then input bills and see how much each of you has to pay.
+    / div.right-align
       a.btn href="#{shopping_book_paper_path(@book, @paper)}"
         i.material-icons.left speaker_notes
         | Account
