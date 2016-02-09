@@ -7,14 +7,20 @@ nav
 h1,
 h2,
 h3,
-a,
-.btn-flat
   @extend .baseColor-text
 
 h3
   font-size: 2rem
 
+a,
+.btn-flat
+  @extend .interactionColor-text
+
+a
+  text-decoration: underline
+
 .btn
+  @extend .interactionColor
   @extend .white-text
 
 .outerContainer
@@ -34,3 +40,7 @@ h3
   @extend .teal.darken-1
 .baseColor-text
   @extend .teal-text
+.interactionColor
+  @extend .indigo.lighten-1
+.interactionColor-text
+  @extend .indigo-text
