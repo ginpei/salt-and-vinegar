@@ -40,16 +40,16 @@ main.app-main
           | Add Items
       p
         strong NOTE:
-        |  To specify quantity, use following format. In this case, the quantities of avocado is 12, and one of milk is 10L. Ones of salt and vinegar are not specified.
+        |  To specify quantity, follow the format below. In this example, the quantity of avocado is 12, and that of milk is 3. Salt and vinegar are not specified.
       pre.teal.lighten-5
           |
             Salt
             Avocado x 12
             Vinegaer
-            Milk x 10L
+            Milk x 3
 
     h3 Copy From History
-    p You can chose items from recent papers.
+    p You can choose items from recent papers.
     div.right-align
       a.btn href="#{book_select_recent_items_path(@book)}"
         i.material-icons.left playlist_add
@@ -57,28 +57,29 @@ main.app-main
 
   section
     h2 Shopping
-    p Now you are at a store? Use shopping mode to manage items which you got or not yet!
+    p Check items when you find them.
     div.right-align
       a.btn href="#{shopping_book_paper_path(@book, @paper)}"
-        i.material-icons.left shopping_cart
-        | Start
+        i.material-icons.left playlist_add_check
+        | Checklist
     / p Then input bills and see how much each of you has to pay.
     / div.right-align
       a.btn href="#{shopping_book_paper_path(@book, @paper)}"
-        i.material-icons.left speaker_notes
+        i.material-icons.left attach_money
         | Account
 
   section
     h2 Turn over
-    p Start using new paper for next shopping.
+    p Create new paper for next shopping.
     div.right-align
       a.btn href="#{new_book_paper_path(@book)}"
         i.material-icons.left note_add
         | New...
 
+
   section
     h2 History
-    p Hare are 5 recent papers.
+    p Here are 5 recent papers.
     ul
       - @book.recent_papers.each do |paper|
         li
