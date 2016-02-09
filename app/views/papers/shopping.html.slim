@@ -2,15 +2,15 @@ header.teal.darken-1.z-depth-1
   div.container
     h1.white-text = @book.name
 
-main
-  p.container
+main.container
+  p
     a href="#{book_path @book}" Back to the book
 
-  h2.container.teal-text = @paper.title
+  h2.teal-text = @paper.title
 
-  div#notice.container.center-align.green-text = notice
+  div#notice.center-align.green-text = notice
 
   = render 'items/shopping_index'
 
-  p.container
+  p
     em NOTE: These checkboxes have no influence.

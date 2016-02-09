@@ -8,9 +8,9 @@ main.container
     - @recent_papers.each do |paper|
       div.field
         h3.teal-text = paper.title
-        ul
+        ul.collection--eachLabel.antiContainer
           - paper.items.each do |item|
-            li
+            li.collection-item
               input id="item-#{item.id}" name="last_item[#{paper.id}][]" value="#{item.id}" type="checkbox"
               label for="item-#{item.id}"
                 = item.name
@@ -19,5 +19,7 @@ main.container
                 - if item.orderer.present?
                   = " by #{item.orderer}"
 
-    div.right
-      = button_tag('Add', type: 'submit', class: "btn-large waves-effect waves-light")
+        div.right-align
+          = button_tag type: 'submit', class: 'btn'
+            i.material-icons.left playlist_add
+            | Add Items
