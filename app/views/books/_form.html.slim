@@ -8,8 +8,9 @@
 
   .field
     = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :token
-    = f.text_field :token
-  .actions = f.submit
+    = f.text_field :name, placeholder: 'Charie\'s'
+
+  div.actions.right-align
+    = button_tag type: 'submit', class: 'btn'
+      i.material-icons.left note_add
+      | Create Book

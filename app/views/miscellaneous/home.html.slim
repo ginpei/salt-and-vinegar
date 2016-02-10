@@ -1,12 +1,15 @@
-header.teal.darken-1.z-depth-1
-  div.container
-    h1.white-text Salt and Vinegar
+header.app-header
+  div.app-header-title
+    a href="#{root_path}"
+      img.app-header-logo src="/logo-on-the-bottle.png" alt=""
+    a href="#{root_path}"
+      | Salt and Vinegar
 
 main.container
   p.center-align
     a href="#{ new_book_path }"
-      img.home-bigLogo src="/logo-on-the-bottle.png"
+      img.responsive-img src="/logo-on-the-bottle.png"
       br
-      span.waves-effect.waves-light.btn-large Create new paper now!
+      span.btn Create new paper now!
   p.center-align
     a.btn href="#{ book_path('example') }" See an example

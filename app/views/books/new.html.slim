@@ -1,5 +1,10 @@
-h1 New book
+header.app-header
+  div.app-header-title
+    a href="#{root_path}"
+      img.app-header-logo src="/logo-on-the-bottle.png" alt=""
+    a href="#{root_path}"
+      | Salt and Vinegar
 
-== render 'form'
-
-= link_to 'Back', books_path
+main.app-main
+  h1 New Book
+  = render 'form'
