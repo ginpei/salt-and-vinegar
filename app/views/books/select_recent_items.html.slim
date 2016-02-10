@@ -1,3 +1,6 @@
+p
+  a href="#{book_path @book}" Back to the book
+
 h1 Copy From History
 p Select items which you need today from recent papers.
 = form_tag(book_copy_recent_items_path(@book), method: 'POST') do |f|
