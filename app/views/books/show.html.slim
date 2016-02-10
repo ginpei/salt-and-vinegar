@@ -1,75 +1,66 @@
-header.app-header
-  div.app-header-title
-    a href="#{root_path}"
-      img.app-header-logo src="/logo-on-the-bottle.png" alt=""
-    a href="#{book_path(@book)}"
-      = @book.name
+h1.mod-book-paperTitle
+  a href="#{edit_book_paper_path(@book, @paper)}"
+    = @paper.title
 
-main.app-main
+section
+  / p Flick items to show management menus.
+  = render 'items/index'
+  / ul.collection.antiContainer
+    - @items.each do |item|
+      li.collection-item.mod-item-collection-item
+        span.mod-item-collection-item-name = item.name
+        - if item.quantity.present?
+          span.mod-item-collection-item-quantity x#{item.quantity}
+        - if item.orderer.present?
+          span.right.mod-item-collection-item-orderer by #{item.orderer}
 
-  h1.mod-book-paperTitle
-    a href="#{edit_book_paper_path(@book, @paper)}"
-      = @paper.title
+section
+  h2 Add
 
-  section
-    / p Flick items to show management menus.
-    = render 'items/index'
-    / ul.collection.antiContainer
-      - @items.each do |item|
-        li.collection-item.mod-item-collection-item
-          span.mod-item-collection-item-name = item.name
-          - if item.quantity.present?
-            span.mod-item-collection-item-quantity x#{item.quantity}
-          - if item.orderer.present?
-            span.right.mod-item-collection-item-orderer by #{item.orderer}
+  = render partial: 'items/multi_form', locals: { item: @new_item }
+  p
+    strong NOTE:
+    |  To specify quantity, follow the format below. In this example, the quantity of avocado is 12, and that of milk is 3. Salt and vinegar are not specified.
+  pre.teal.lighten-5
+      |
+        Salt
+        Avocado x 12
+        Vinegaer
+        Milk x 3
 
-  section
-    h2 Add
+  h3 Copy From History
+  p You can choose items from recent papers.
+  div.right-align
+    a.btn href="#{book_select_recent_items_path(@book)}"
+      i.material-icons.left list
+      | Choose...
 
-    = render partial: 'items/multi_form', locals: { item: @new_item }
-    p
-      strong NOTE:
-      |  To specify quantity, follow the format below. In this example, the quantity of avocado is 12, and that of milk is 3. Salt and vinegar are not specified.
-    pre.teal.lighten-5
-        |
-          Salt
-          Avocado x 12
-          Vinegaer
-          Milk x 3
+section
+  h2 Shopping
+  p Check items when you find them.
+  div.right-align
+    a.btn href="#{shopping_book_paper_path(@book, @paper)}"
+      i.material-icons.left playlist_add_check
+      | Checklist
+  / p Then input bills and see how much each of you has to pay.
+  / div.right-align
+    a.btn href="#{shopping_book_paper_path(@book, @paper)}"
+      i.material-icons.left attach_money
+      | Account
 
-    h3 Copy From History
-    p You can choose items from recent papers.
-    div.right-align
-      a.btn href="#{book_select_recent_items_path(@book)}"
-        i.material-icons.left list
-        | Choose...
-
-  section
-    h2 Shopping
-    p Check items when you find them.
-    div.right-align
-      a.btn href="#{shopping_book_paper_path(@book, @paper)}"
-        i.material-icons.left playlist_add_check
-        | Checklist
-    / p Then input bills and see how much each of you has to pay.
-    / div.right-align
-      a.btn href="#{shopping_book_paper_path(@book, @paper)}"
-        i.material-icons.left attach_money
-        | Account
-
-  section
-    h2 Turn over
-    p Create new paper for next shopping.
-    div.right-align
-      a.btn href="#{new_book_paper_path(@book)}"
-        i.material-icons.left note_add
-        | New...
+section
+  h2 Turn over
+  p Create new paper for next shopping.
+  div.right-align
+    a.btn href="#{new_book_paper_path(@book)}"
+      i.material-icons.left note_add
+      | New...
 
 
-  section
-    h2 History
-    p Here are 5 recent papers.
-    ul
-      - @book.recent_papers.each do |paper|
-        li
-          a href="#{book_paper_path(@book, paper)}" = paper.title
+section
+  h2 History
+  p Here are 5 recent papers.
+  ul
+    - @book.recent_papers.each do |paper|
+      li
+        a href="#{book_paper_path(@book, paper)}" = paper.title

@@ -12,7 +12,17 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
-    = yield
+    header.app-header
+      div.app-header-title
+        a href="#{root_path}"
+          img.app-header-logo src="/logo-on-the-bottle.png" alt=""
+        - if @book and @book.id.present?
+          a href="#{book_path(@book)}" = @book.name
+        - else
+          a href="#{root_path}" Salt and Vinegar
+
+    main.app-main
+      = yield
 
     footer.app-footer
       nav.app-footer-nav

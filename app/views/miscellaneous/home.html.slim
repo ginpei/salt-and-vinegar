@@ -1,15 +1,7 @@
-header.app-header
-  div.app-header-title
-    a href="#{root_path}"
-      img.app-header-logo src="/logo-on-the-bottle.png" alt=""
-    a href="#{root_path}"
-      | Salt and Vinegar
-
-main.container
-  p.center-align
-    a href="#{ new_book_path }"
-      img.responsive-img src="/logo-on-the-bottle.png"
-      br
-      span.btn Create new paper now!
-  p.center-align
-    a.btn href="#{ book_path('example') }" See an example
+p.center-align
+  a href="#{ new_book_path }"
+    img.responsive-img src="/logo-on-the-bottle.png"
+    br
+    span.btn Create new paper now!
+p.center-align
+  a.btn href="#{ book_path('example') }" See an example
