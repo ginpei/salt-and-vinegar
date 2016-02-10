@@ -1,0 +1,15 @@
+= form_tag items_create_multi_path, remote: true, class: 'js-itemForm js-itemForm-new' do |f|
+
+  div.field
+    = label_tag 'name_list', 'Items'
+    = text_area_tag 'name_list', nil, class: 'materialize-textarea js-continuable', placeholder: 'Avocado x 12'
+
+  div.field
+    = label_tag 'orderer', 'Name'
+    = text_field_tag 'orderer', nil, placeholder: 'Alice'
+
+  div.actions.right-align
+    = hidden_field_tag :paper_id, item.paper.id
+    = button_tag type: 'submit', class: 'btn'
+      i.material-icons.left playlist_add
+      | Add Items

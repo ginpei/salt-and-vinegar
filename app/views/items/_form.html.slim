@@ -8,7 +8,7 @@
           li = message
 
   div.right-align
-    = f.button 'Cancel', type: :button, class: 'btn-flat teal-text waves-effect waves-light js-closeEditItemForm' if item.id
+    = f.button 'Cancel', type: :button, class: 'btn-flat js-closeEditItemForm' if item.id
 
   .field
     = f.label :name
@@ -27,9 +27,10 @@
 
   div.actions.right-align
     = f.hidden_field :paper_id
-    = f.button type: 'submit', class: "btn waves-effect waves-light"
+    = f.button type: 'submit', class: "btn"
+      i.material-icons.left playlist_add
       = (if item.id then 'Update Item' else 'Create Item' end)
 
 - if item.id
   = form_for item, method: :delete, remote: true, html: { id: nil, class: 'item-deleteForm right-align js-itemDeleteForm' } do |f|
-    = f.button 'Destroy', class: 'btn red waves-effect waves-light', type: 'submit'
+    = f.button 'Destroy', class: 'btn red', type: 'submit'

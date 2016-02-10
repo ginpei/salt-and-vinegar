@@ -1,23 +1,24 @@
-header.teal.darken-1.z-depth-1
-  div.container
-    h1.white-text = @book.name
+p
+  a href="#{book_path @book}" Back to the book
 
-main.container
-  h2.teal-text Copy Items From Recent Papers
-  = form_tag(book_copy_recent_items_path(@book), method: 'POST') do |f|
-    - @recent_papers.each do |paper|
-      div.field
-        h3.teal-text = paper.title
-        ul
-          - paper.items.each do |item|
-            li
-              input id="item-#{item.id}" name="last_item[#{paper.id}][]" value="#{item.id}" type="checkbox"
-              label for="item-#{item.id}"
-                = item.name
-                - if item.quantity.present?
-                  = " x#{item.quantity}"
-                - if item.orderer.present?
-                  = " by #{item.orderer}"
+h1 Copy From History
+p Select items which you need today from recent papers.
+= form_tag(book_copy_recent_items_path(@book), method: 'POST') do |f|
+  - @recent_papers.each do |paper|
+    div.field
+      h2 = paper.title
+      ul.collection--eachLabel.antiContainer
+        - paper.items.each do |item|
+          li.collection-item
+            input id="item-#{item.id}" name="last_item[#{paper.id}][]" value="#{item.id}" type="checkbox"
+            label for="item-#{item.id}"
+              = item.name
+              - if item.quantity.present?
+                = " x#{item.quantity}"
+              - if item.orderer.present?
+                = " by #{item.orderer}"
 
-    div.right
-      = button_tag('Add', type: 'submit', class: "btn-large waves-effect waves-light")
+      div.right-align
+        = button_tag type: 'submit', class: 'btn'
+          i.material-icons.left playlist_add
+          | Add Items

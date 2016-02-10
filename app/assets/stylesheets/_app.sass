@@ -1,0 +1,56 @@
+// Application global modules
+// .app-*
+
+.app
+  // Global Header
+  &-header
+    @extend .outerContainer
+    @extend .baseColor
+    @extend .z-depth-1
+    margin-bottom: 1em
+
+    a
+      @extend .white-text
+
+    &-title
+      margin: 0
+      font-size: 1em
+      line-height: 2em
+
+      a
+        text-decoration: none
+
+    &-logo
+      height: 1em
+      vertical-align: middle
+      margin-right: 1em
+      width: 1em
+
+  // Global Footer
+  &-footer
+    @extend .page-footer
+    @extend .outerContainer
+    @extend .grey
+    @extend .darken-1
+
+    &-nav
+      a
+        @extend .white-text
+
+        &::after
+          @extend .grey-text
+          content: "|"
+          display: inline-block
+          margin-left: 0.5em
+          margin-right: 0.5em
+
+        &:last-child::after
+          content: none
+
+    &-copyright
+      @extend .footer-copyright
+      background-color: transparent !important
+
+  // General Main
+  &-main
+    @extend .container

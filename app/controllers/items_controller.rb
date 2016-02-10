@@ -11,6 +11,26 @@ class ItemsController < ApplicationController
     session[:orderer] = @item.orderer
   end
 
+  # POST /items/multi
+  def create_multi
+    item_params = params.permit(:paper_id, :name_list, :orderer)
+    unless item_params[:name_list].present?
+      messages = ['At least one item is required.']
+      render status: 400, json: { status: 'error', messages: messages }
+      return
+    end
+
+    items = []
+    Item.split_multi_params(item_params).each do |attr|
+      item = Item.new(attr)
+      item.save()
+      items.push(item)
+    end
+
+    html = make_html_for_new_items(items)
+    render json: { status: 'success', items: items, html: html }
+  end
+
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
@@ -44,5 +64,13 @@ class ItemsController < ApplicationController
         messages = item.errors.full_messages
         render status: 400, json: { status: 'error', messages: messages }
       end
+    end
+
+    def make_html_for_new_items items
+      html = '['
+      items.each do |item|
+        html += render_to_string('items/_show', layout: nil, locals: { item: item } )
+      end
+      html += ']'
     end
 end

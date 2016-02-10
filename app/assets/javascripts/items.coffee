@@ -10,20 +10,32 @@ window.onomatopia.item = (
   initialize: () ->
     @addAction '.js-openEditItemForm', 'click',
       (event)=> @_openEditForm(@_findEventRow(event))
+
     @addAction '.js-closeEditItemForm', 'click',
       (event)=> @_closeEditForm(@_findEventRow(event))
+
     @addAction '.js-itemForm', 'ajax:send',
       (event, ajax)=> @_lockForm(@_findEventForm(event))
+
     @addAction '.js-itemForm', 'ajax:complete',
       (event, ajax)=> @_unlockForm(@_findEventForm(event))
+
     @addAction '.js-itemForm-new', 'ajax:success',
-      (event, data, ajax, status)=> @_appendCreatedItem(@_findEventForm(event), data)
+      (event, data, ajax, status)=>
+        $form = @_findEventForm(event)
+        @_appendCreatedItem($form, data)
+        @_scrollToForm(@_findEventForm(event))
+
     @addAction '.js-itemForm-edit', 'ajax:success',
       (event, data, ajax, status)=> @_replaceUpdatedItem(@_findEventRow(event), data)
+
     @addAction '.js-itemDeleteForm', 'ajax:send',
       (event, data, ajax, status)=> @_deleteItem(@_findEventRow(event))
+
     @addAction '.js-itemForm', 'ajax:error',
-      (event, ajax, status, statusText)=> @_showFormErrors(ajax)
+      (event, ajax, status, statusText)=>
+        @_unlockForm(@_findEventForm(event))
+        @_showFormErrors(ajax)
 
   _findEventForm: (event)->
     $(event.currentTarget).closest('.js-itemForm')
@@ -52,24 +64,19 @@ window.onomatopia.item = (
       messages[0]
 
   _openEditForm: ($row)->
-    $form = @_findRowForm($row)
-    $cells = $row.children()
-    $formCell = $cells.first().clone()
-      .empty()
-      .attr('colspan', $cells.length)
+    $contents = $row.children()
+    $form = @_findRowForm($row).clone()
+    $form.removeClass('is-hidden')
 
-    $cells.remove()
-    $formCell
-      .data('originals', $cells)
-      .append($form.clone().removeClass('is-hidden'))
-      .appendTo($row)
+    $row.data('originals', $contents)
+    $row.empty()
+    $row.append($form)
 
   _closeEditForm: ($row)->
-    $formCell = $row.children()
-    $cells = $formCell.data('originals')
+    $contents = $row.data('originals')
 
-    $formCell.remove()
-    $cells.appendTo($row)
+    $row.empty()
+    $row.append($contents)
 
   _lockForm: ($form)->
     @_findFormItems($form).attr('disabled', true)
@@ -85,6 +92,30 @@ window.onomatopia.item = (
     $items.append(data.html)
     $continuables.val('')
     setTimeout (-> $firstInput.focus()), 1  # execute after unlocking
+
+    message = @_makeMessageForNewItems(data.items)
+    Materialize.toast(message, 4000)
+
+  _makeMessageForNewItems: (items)->
+    item_length = items.length
+    if item_length is 1
+      "#{@_safeItemNameForToast(items[0].name, 16)} is added."
+    else if item_length is 2
+      "#{@_safeItemNameForToast(items[0].name, 8)} and #{@_safeItemNameForToast(items[1].name, 8)} are added."
+    else
+      "#{item_length} items are added."
+
+  _safeItemNameForToast: (name, length)->
+    if name.length > length
+      name_shortened = name.slice(0, length-2) + '...'
+    else
+      name_shortened = name
+    $('<div>').text(name_shortened).html()
+
+  _scrollToForm: ($form)->
+    MARGIN = 50
+    top = $form.offset().top - MARGIN
+    window.onomatopia.$document.scrollTop(top)
 
   _replaceUpdatedItem: ($row, data)->
     $row.replaceWith(data.html);

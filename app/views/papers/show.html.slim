@@ -1,27 +1,25 @@
-header.teal.darken-1.z-depth-1
-  div.container
-    h1.white-text = @book.name
+header.app-header
+  div.app-header-title
+    a href="#{root_path}"
+      img.app-header-logo src="/logo-on-the-bottle.png" alt=""
+    a href="#{book_path(@book)}"
+      = @book.name
 
-main
-  p.container
-    a href="#{book_path @book}" Back to the book
+main.app-main
 
-  h2.container.teal-text = @paper.title
+  p
+    a href="#{book_path(@book)}" Back to the Book
 
-  div#notice.container.center-align.green-text = notice
+  h1 = @paper.title
 
-  = render 'items/index'
-
-  section.container
-    h3.teal-text Manage
-
-    h4.teal-text Paper
-    ul
-      li
-        a href="#{edit_book_paper_path(@book, @paper)}" Edit This Paper
-
-    h4.teal-text History
-    ul
-      - @papers.each do |paper|
-        li
-          a href="#{book_paper_path(@book, paper)}" = paper.title
+  section
+    / p Flick items to show management menus.
+    = render 'items/index'
+    / ul.collection.antiContainer
+      - @items.each do |item|
+        li.collection-item.mod-item-collection-item
+          span.mod-item-collection-item-name = item.name
+          - if item.quantity.present?
+            span.mod-item-collection-item-quantity x#{item.quantity}
+          - if item.orderer.present?
+            span.right.mod-item-collection-item-orderer by #{item.orderer}

@@ -1,11 +1,3 @@
-table.bordered.striped.container
-  thead
-    tr
-      th Name
-      th Quantity
-      th Orderer
-      th colspan="2"
-
-  tbody#items_list
-    - @items.each do |item|
-      = render partial: 'items/show', locals: { item: item }
+ul.collection.antiContainer
+  - @items.each do |item|
+    = render partial: 'items/show', locals: { item: item }

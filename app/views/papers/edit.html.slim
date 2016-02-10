@@ -1,6 +1,5 @@
-header.teal.darken-1.z-depth-1
-  div.container
-    h1.white-text = "Editing Paper of #{@book.name}"
+p
+  a href="#{book_path(@book)}" Back to the Book
 
-main.container
-  = render 'form'
+h1.mod-book-paperTitle Edit Paper
+= render 'form'
