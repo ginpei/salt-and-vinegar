@@ -64,24 +64,19 @@ window.onomatopia.item = (
       messages[0]
 
   _openEditForm: ($row)->
-    $form = @_findRowForm($row)
-    $cells = $row.children()
-    $formCell = $cells.first().clone()
-      .empty()
-      .attr('colspan', $cells.length)
+    $contents = $row.children()
+    $form = @_findRowForm($row).clone()
+    $form.removeClass('is-hidden')
 
-    $cells.remove()
-    $formCell
-      .data('originals', $cells)
-      .append($form.clone().removeClass('is-hidden'))
-      .appendTo($row)
+    $row.data('originals', $contents)
+    $row.empty()
+    $row.append($form)
 
   _closeEditForm: ($row)->
-    $formCell = $row.children()
-    $cells = $formCell.data('originals')
+    $contents = $row.data('originals')
 
-    $formCell.remove()
-    $cells.appendTo($row)
+    $row.empty()
+    $row.append($contents)
 
   _lockForm: ($form)->
     @_findFormItems($form).attr('disabled', true)

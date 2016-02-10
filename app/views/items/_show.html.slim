@@ -1,8 +1,10 @@
-tr.js-itemForm-item
-  td = item.name
-  td = item.quantity
-  td = item.orderer
-  td
-    button.btn-flat.js-openEditItemForm Edit
-    div.items-form-block.js-itemEditor.is-hidden
-      = render partial: 'items/form', locals: { item: item }
+li.collection-item.mod-item-collection-item.js-itemForm-item
+  button.right.mod-item-collection-item-editButton.js-openEditItemForm
+    i.material-icons build
+  span.mod-item-collection-item-name = item.name
+  - if item.quantity.present?
+    span.mod-item-collection-item-quantity x#{item.quantity}
+  - if item.orderer.present?
+    span.right.mod-item-collection-item-orderer by #{item.orderer}
+  div.items-form-block.js-itemEditor.is-hidden
+    = render partial: 'items/form', locals: { item: item }
