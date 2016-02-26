@@ -47,7 +47,7 @@ window.onomatopia.item = (
     $row.find('.js-itemEditor')
 
   _findItemTable: ->
-    $('#items_list')
+    $('#items-index')
 
   _findFormItems: ($form)->
     $form.find('input, select, textarea, button')

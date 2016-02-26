@@ -67,10 +67,8 @@ class ItemsController < ApplicationController
     end
 
     def make_html_for_new_items items
-      html = '['
-      items.each do |item|
-        html += render_to_string('items/_show', layout: nil, locals: { item: item } )
+      html = items
+        .map {|item| render_to_string('items/_show', layout: nil, locals: { item: item }) }
+        .join('')
       end
-      html += ']'
-    end
 end
