@@ -4,5 +4,8 @@ p
 h1 = @paper.title
 
 section
+  p.right-align
+    = link_to 'Purchase...', purchase_book_paper_path(@book, @paper)
+    /#, class: 'btn'
   / p Flick items to show management menus.
   = render 'items/index'

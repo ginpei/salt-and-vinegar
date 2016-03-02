@@ -1,0 +1,42 @@
+p
+  a href="#{book_path(@book)}" Back to the Book
+
+h1 = "Purchase for #{@paper.title}"
+
+section
+  p Fill prices of what you bought. You can leave them blank for something you didn't buy.
+
+  = form_for @paper, url: { action: 'save_purchase', method: 'patch' } do |f_paper|
+    ul#items-index.collection.antiContainer
+      = f_paper.fields_for :items do |f|
+        li.collection-item.mod-item-collection-item.js-itemForm-item
+          div.field.mod-item-field.mod-item-field-name
+            = f.label :name
+            br
+            = f.text_field :name, tabindex: -1
+
+          span.mod-item-before_quantity x
+
+          div.field.mod-item-field.mod-item-field-quantity
+            = f.label :Quantity
+            br
+            = f.text_field :quantity, tabindex: -1
+
+          br
+
+          div.field.mod-item-field.mod-item-field-price
+            = f.label :price
+            br
+            = f.text_field :price
+
+          span.mod-item-before_unit = '/'
+
+          div.field.mod-item-field.mod-item-field-unit
+            = f.label :unit
+            br
+            = f.text_field :unit, tabindex: -1
+
+    div.actions.right-align
+      = f_paper.button type: 'submit', class: "btn"
+        i.material-icons.left playlist_add_check
+        | Save Purchase
