@@ -4,36 +4,7 @@
   div.right-align
     = f.button 'Cancel', type: :button, class: 'btn-flat js-closeEditItemForm' if item.id
 
-  div.field.mod-item-field.mod-item-field-name
-    = f.label :name
-    br
-    = f.text_field :name
-
-  span.mod-item-before_quantity x
-
-  div.field.mod-item-field.mod-item-field-quantity
-    = f.label :Quantity
-    br
-    = f.text_field :quantity
-
-  div.field.mod-item-field.mod-item-field-orderer
-    = f.label :orderer
-    br
-    = f.text_field :orderer
-
-  / br
-
-  / div.field.mod-item-field.mod-item-field-price
-    = f.label :price
-    br
-    = f.text_field :price
-
-  / span.mod-item-before_unit = '/'
-
-  / div.field.mod-item-field.mod-item-field-unit
-    = f.label :unit
-    br
-    = f.text_field :unit, tabindex: -1
+  = render partial: 'items/form_content', locals: { f: f, purchasing: false }
 
   div.actions.right-align
     = f.hidden_field :paper_id
