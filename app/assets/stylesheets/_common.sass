@@ -1,0 +1,21 @@
+.linkBlock
+  @extend .collection
+
+  > a
+    @extend .collection-item
+
+  &.antiContainer
+    > a
+      padding-left: calc(1.5rem + 5%)
+      padding-right: calc(1.5rem + 5%)
+
+i.linkIcon
+  font-size: 1.5em
+  margin-right: 0.5em
+  vertical-align: middle
+  width: 1em
+
+@media only screen and (min-width: 601px)
+  .linkBlock.antiContainer > a
+    padding-left: 20px
+    padding-right: 20px

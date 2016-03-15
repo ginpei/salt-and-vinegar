@@ -4,9 +4,9 @@ p
 h1 = @paper.title
 
 section
-  p.right-align
-    a.btn href="#{purchase_book_paper_path(@book, @paper)}"
-      i.material-icons.left attach_money
-      | Purchase...
+  div.linkBlock.antiContainer
+    a href="#{purchase_book_paper_path(@book, @paper)}"
+      i.material-icons.linkIcon attach_money
+      | Purchase
   / p Flick items to show management menus.
   = render 'items/index'

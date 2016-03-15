@@ -22,42 +22,43 @@ section
 
   h3 Copy From History
   p You can choose items from recent papers.
-  div.right-align
-    a.btn href="#{book_select_recent_items_path(@book)}"
-      i.material-icons.left list
-      | Choose...
+  div.linkBlock.antiContainer
+    a href="#{book_select_recent_items_path(@book)}"
+      i.material-icons.linkIcon list
+      | Choose
 
 section
   h2 Shopping
   p Check items when you find them.
-  div.right-align
-    a.btn href="#{shopping_book_paper_path(@book, @paper)}"
-      i.material-icons.left playlist_add_check
+  div.linkBlock.antiContainer
+    a href="#{shopping_book_paper_path(@book, @paper)}"
+      i.material-icons.linkIcon playlist_add_check
       | Checklist
 
 section
   h2 Turn over
   p Record bills.
   / p Record bills and see how much each of you has to pay.
-  div.right-align
-    a.btn href="#{purchase_book_paper_path(@book, @paper)}"
-      i.material-icons.left attach_money
-      | Purchase...
+  div.linkBlock.antiContainer
+    a href="#{purchase_book_paper_path(@book, @paper)}"
+      i.material-icons.linkIcon attach_money
+      | Purchase
   p Create new paper for next shopping.
-  div.right-align
-    a.btn href="#{new_book_paper_path(@book)}"
-      i.material-icons.left note_add
-      | New...
+  div.linkBlock.antiContainer
+    a href="#{new_book_paper_path(@book)}"
+      i.material-icons.linkIcon note_add
+      | New Paper
 
 section
   h2 History
   p Here are 5 recent papers.
-  div.collection.antiContainer
+  div.linkBlock.antiContainer
     - @book.recent_papers.each do |paper|
-      a.collection-item href="#{book_paper_path(@book, paper)}" = paper.title
+      a href="#{book_paper_path(@book, paper)}" = paper.title
 
 section
   h2 Manage Book
-  ul
-    li
-      a href="#{edit_book_path(@book)}" Edit Book
+  div.linkBlock.antiContainer
+    a href="#{edit_book_path(@book)}"
+      i.material-icons.linkIcon build
+      | Edit Book
