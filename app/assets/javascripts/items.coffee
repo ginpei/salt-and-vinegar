@@ -28,9 +28,9 @@ window.onomatopia.item = (
 
     @addAction '.js-itemForm-edit', 'ajax:success',
       (event, data, ajax, status)=>
-        $row = @_findEventRow(event)
-        @_scrollToRow($row)  # scroll before replacing
-        @_replaceUpdatedItem($row, data)
+        $row = @_replaceUpdatedItem(@_findEventRow(event), data)
+        @_scrollToRow($row)
+        @_flash($row)
 
     @addAction '.js-itemDeleteForm', 'ajax:send',
       (event, data, ajax, status)=> @_deleteItem(@_findEventRow(event))
@@ -121,12 +121,19 @@ window.onomatopia.item = (
     window.onomatopia.$document.scrollTop(top)
 
   _replaceUpdatedItem: ($row, data)->
-    $row.replaceWith(data.html);
+    $new_row = $(data.html)
+    $row.replaceWith($new_row)
+    $new_row
 
   _scrollToRow: ($row)->
     MARGIN = 20
     top = $row.offset().top - MARGIN
     window.onomatopia.$document.scrollTop(top)
+
+  _flash: ($row)->
+    $row
+      .css({ opacity: 0.1 })
+      .fadeTo(1000, 1)
 
   _deleteItem: ($row)->
     $row.remove()
