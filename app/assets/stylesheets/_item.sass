@@ -11,9 +11,31 @@
         width: 2.5em
 
       &-name
-        display: block
+        margin-right: 0.5em
+
       &-quantity,
-      &-orderer
+      &-orderer,
+      &-price,
+      &-unit,
+      &-comment
         @extend .teal-text.text-lighten-3
-      &-quantity
+
+      &-orderer,
+      &-unit
         margin-right: 1em
+
+  &-field
+    display: inline-block
+
+    &-name,
+    &-price
+      width: 75%
+    &-before_quantity,
+    &-before_unit
+      width: 5%
+    &-quantity,
+    &-unit
+      width: 20%
+    &-orderer,
+    &-comment
+      width: 100%

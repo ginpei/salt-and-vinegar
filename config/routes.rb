@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     resources :papers do
       member do
         get 'shopping'
+        get 'purchase'
+        patch 'save_purchase'
       end
     end
     get 'select_recent_items'

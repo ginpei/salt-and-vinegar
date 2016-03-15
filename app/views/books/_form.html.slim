@@ -10,7 +10,14 @@
     = f.label :name
     = f.text_field :name, placeholder: 'Charie\'s'
 
+  .field
+    = f.label :currency
+    = f.text_field :currency, placeholder: '$'
+
   div.actions.right-align
     = button_tag type: 'submit', class: 'btn'
       i.material-icons.left note_add
-      | Create Book
+      - if @book.id.nil?
+        | Create Book
+      - else
+        | Update Book

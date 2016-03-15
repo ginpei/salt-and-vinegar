@@ -1,6 +1,6 @@
 class PapersController < ApplicationController
   before_action :set_book
-  before_action :set_paper, only: [:show, :edit, :shopping, :update, :destroy]
+  before_action :set_paper, only: [:show, :edit, :shopping, :purchase, :update, :save_purchase, :destroy]
 
   # GET /papers/1
   # GET /papers/1.json
@@ -39,6 +39,13 @@ class PapersController < ApplicationController
     @item.orderer = session[:orderer]
   end
 
+  # GET /papers/1/purchase
+  def purchase
+    @title = @paper.title
+    @papers = @book.papers.reverse
+    @items = @paper.items.all
+  end
+
   # POST /papers
   # POST /papers.json
   def create
@@ -61,6 +68,19 @@ class PapersController < ApplicationController
     respond_to do |format|
       if @paper.update(paper_params)
         format.html { redirect_to [@book, @paper], notice: 'Paper was successfully updated.' }
+        format.json { render :show, status: :ok, location: @paper }
+      else
+        format.html { render :edit }
+        format.json { render json: @paper.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /papers/1/save_purchase
+  def save_purchase
+    respond_to do |format|
+      if @paper.update(paper_purchase_params)
+        format.html { redirect_to purchase_book_paper_path(@book, @paper), notice: 'Paper was successfully updated.' }
         format.json { render :show, status: :ok, location: @paper }
       else
         format.html { render :edit }
@@ -92,5 +112,9 @@ class PapersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def paper_params
       params.require(:paper).permit(:title)
+    end
+
+    def paper_purchase_params
+      params.require(:paper).permit(items_attributes: [:id, :name, :quantity, :price, :unit])
     end
 end

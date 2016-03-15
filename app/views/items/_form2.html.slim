@@ -1,0 +1,17 @@
+= form_for item, remote: true, html: { class: "js-itemForm #{if item.id then 'js-itemForm-edit' else 'js-itemForm-new' end}" } do |f|
+  / li.collection-item.mod-item-collection-item.js-itemForm-item
+
+  div.right-align
+    = f.button 'Cancel', type: :button, class: 'btn-flat js-closeEditItemForm' if item.id
+
+  = render partial: 'items/form_content', locals: { f: f, purchasing: false }
+
+  div.actions.right-align
+    = f.hidden_field :paper_id
+    = f.button type: 'submit', class: "btn"
+      i.material-icons.left playlist_add
+      = (if item.id then 'Update Item' else 'Create Item' end)
+
+- if item.id
+  = form_for item, method: :delete, remote: true, html: { id: nil, class: 'item-deleteForm right-align js-itemDeleteForm' } do |f|
+    = f.button 'Destroy', class: 'btn red', type: 'submit'
