@@ -12,16 +12,17 @@
 
       &-name
         margin-right: 0.5em
-      &-quantity
+
+      &-quantity,
+      &-orderer,
+      &-price,
+      &-unit,
+      &-comment
         @extend .teal-text.text-lighten-3
 
       &-orderer,
-      &-price,
       &-unit
-        @extend .teal-text.text-lighten-3
         margin-right: 1em
-      &-price
-        margin-right: 0
 
   &-field
     display: inline-block
@@ -35,5 +36,6 @@
     &-quantity,
     &-unit
       width: 20%
-    &-orderer
+    &-orderer,
+    &-comment
       width: 100%

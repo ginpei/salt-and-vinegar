@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20160315091622) do
     t.datetime "updated_at", null: false
     t.integer  "price"
     t.integer  "unit"
+    t.text     "comment"
   end
 
   add_index "items", ["paper_id"], name: "index_items_on_paper_id"
