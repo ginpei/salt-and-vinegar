@@ -52,10 +52,9 @@ section
 section
   h2 History
   p Here are 5 recent papers.
-  ul
+  div.collection.antiContainer
     - @book.recent_papers.each do |paper|
-      li
-        a href="#{book_paper_path(@book, paper)}" = paper.title
+      a.collection-item href="#{book_paper_path(@book, paper)}" = paper.title
 
 section
   h2 Manage Book
