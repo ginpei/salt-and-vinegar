@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :books, param: :token do
+  resources :books, param: :token, except: [:index] do
     resources :papers do
       member do
         get 'shopping'
