@@ -29,20 +29,18 @@ section
 
 section
   h2 Shopping
-  p Check items when you find them.
+  p Check items when you find them and record bills.
+  / p Record bills and see how much each of you has to pay.
   div.linkBlock.antiContainer
     a href="#{shopping_book_paper_path(@book, @paper)}"
       i.material-icons.linkIcon playlist_add_check
-      | Checklist
-
-section
-  h2 Turn over
-  p Record bills.
-  / p Record bills and see how much each of you has to pay.
-  div.linkBlock.antiContainer
+      | Show Checklist
     a href="#{purchase_book_paper_path(@book, @paper)}"
       i.material-icons.linkIcon attach_money
       | Purchase
+
+section
+  h2 Turn over
   p Create new paper for next shopping.
   div.linkBlock.antiContainer
     a href="#{new_book_paper_path(@book)}"
