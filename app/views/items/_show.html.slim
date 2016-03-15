@@ -1,10 +1,16 @@
 li.collection-item.mod-item-collection-item.js-itemForm-item
   button.right.mod-item-collection-item-editButton.js-openEditItemForm
     i.material-icons build
-  span.mod-item-collection-item-name = item.name
-  - if item.quantity.present?
-    span.mod-item-collection-item-quantity x #{item.quantity}
-  - if item.orderer.present?
-    span.right.mod-item-collection-item-orderer by #{item.orderer}
+  div
+    span.mod-item-collection-item-name = item.name
+    - if item.quantity.present?
+      span.mod-item-collection-item-quantity x #{item.quantity}
+  div
+    - if item.orderer.present?
+      span.mod-item-collection-item-orderer by #{item.orderer}
+    - if item.price.present?
+        span.mod-item-collection-item-price = item.price
+        - if item.unit.present?
+          span.mod-item-collection-item-unit = "/#{item.unit}"
   div.items-form-block.js-itemEditor.is-hidden
     = render partial: 'items/form2', locals: { item: item }
