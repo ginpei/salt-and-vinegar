@@ -34,6 +34,7 @@ class ItemsController < ApplicationController
   # PATCH/PUT /items/1
   # PATCH/PUT /items/1.json
   def update
+    @book = @item.paper.book
     @item.update(item_params)
     render_item_json @item
   end
@@ -53,7 +54,7 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:paper_id, :name, :quantity, :orderer)
+      params.require(:item).permit(:paper_id, :name, :quantity, :orderer, :price, :unit)
     end
 
     def render_item_json item
