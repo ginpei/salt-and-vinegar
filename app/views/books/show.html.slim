@@ -3,6 +3,11 @@ h1.mod-book-paperTitle
     = @paper.title
 
 section
+  div.right-align
+    a href="#shopping" Jump to Functions
+
+section
+  h2 Items
   / p Flick items to show management menus.
   = render 'items/index'
 
@@ -27,7 +32,7 @@ section
       i.material-icons.linkIcon list
       | Choose
 
-section
+section#shopping
   h2 Shopping
   p Check items when you find them and record bills.
   / p Record bills and see how much each of you has to pay.
