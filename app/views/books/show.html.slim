@@ -1,6 +1,4 @@
-h1.mod-book-paperTitle
-  a href="#{edit_book_paper_path(@book, @paper)}"
-    = @paper.title
+h1.mod-book-paperTitle Latest Paper
 
 section
   div.right-align
@@ -47,12 +45,15 @@ section#shopping
       | Purchase
 
 section
-  h2 Turn over
-  p Create new paper for next shopping.
+  h2 Manage Latest Paper
+  p If you need to edit old papers, find them from history.
   div.linkBlock.antiContainer
+    a href="#{edit_book_paper_path(@book, @paper)}"
+      i.material-icons.linkIcon build
+      | Edit This Paper
     a href="#{new_book_paper_path(@book)}"
       i.material-icons.linkIcon note_add
-      | New Paper
+      | Turn Over To New Paper
 
 section
   h2 History
