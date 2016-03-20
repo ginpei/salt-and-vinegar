@@ -7,7 +7,13 @@ section
       | Jump to Functions
 
 section
-  h2 Items
+  - if @paper.title.present?
+    h2 = @paper.title
+  - else
+    h2
+      | (Not named yet)
+  - if @paper.description.present?
+    p = @paper.description
   / p Flick items to show management menus.
   = render 'items/index'
 
