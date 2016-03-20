@@ -12,6 +12,9 @@ h1
 
 section
   div.linkBlock.antiContainer
+    a href="#{edit_book_paper_path(@book, @paper)}"
+      i.material-icons.linkIcon build
+      | Edit This Paper
     a href="#{purchase_book_paper_path(@book, @paper)}"
       i.material-icons.linkIcon attach_money
       | Purchase
