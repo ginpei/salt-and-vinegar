@@ -21,7 +21,6 @@ class PapersController < ApplicationController
     @last_items = @last_paper.items
 
     @paper = @book.papers.new
-    @paper.title = Time.now.strftime('%Y-%m-%d')
   end
 
   # GET /papers/1/edit
