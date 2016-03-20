@@ -1,7 +1,11 @@
 p
   a href="#{book_path(@book)}" Back to the Book
 
-h1 = @paper.title
+h1
+  - if @paper.title.present?
+    = @paper.title
+  - else
+    | (Not titled)
 
 section
   div.linkBlock.antiContainer
