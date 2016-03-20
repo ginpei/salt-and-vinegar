@@ -24,7 +24,7 @@
         i.material-icons.left note_add
         | Create
 
-  - if @last_paper
+  - if @last_paper and not @last_paper.title.present?
     p NOTE: If the last paper has not been named, it will be named as today's date.
 
   - if @last_paper
