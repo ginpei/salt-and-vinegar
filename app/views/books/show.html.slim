@@ -1,4 +1,10 @@
-h1.mod-book-paperTitle Latest Paper
+h1.mod-book-paperTitle
+  - if @paper.title.present?
+    = @paper.title
+  - else
+    | Latest Paper
+- if @paper.description.present?
+  p = @paper.description
 
 section
   div.right-align
@@ -7,13 +13,6 @@ section
       | Jump to Functions
 
 section
-  - if @paper.title.present?
-    h2 = @paper.title
-  - else
-    h2
-      | (Not named yet)
-  - if @paper.description.present?
-    p = @paper.description
   / p Flick items to show management menus.
   = render 'items/index'
 
