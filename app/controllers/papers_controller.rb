@@ -48,10 +48,16 @@ class PapersController < ApplicationController
   # POST /papers
   # POST /papers.json
   def create
+    @last_paper = @book.current_paper
     @paper = @book.turn_over(paper_params, params[:last_item])
 
     respond_to do |format|
       if @paper.save
+        unless @last_paper.title.present?
+          @last_paper.set_todays_date
+          @last_paper.save
+        end
+
         format.html { redirect_to @book, notice: 'Paper was successfully created.' }
         format.json { render :show, status: :created, location: @paper }
       else

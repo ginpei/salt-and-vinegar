@@ -25,6 +25,9 @@
         | Create
 
   - if @last_paper
+    p NOTE: If the last paper has not been named, it will be named as today's date.
+
+  - if @last_paper
     div.field
       h2 Copy Items From Last Paper
       ul.collection--eachLabel.antiContainer

@@ -3,6 +3,10 @@ class Paper < ActiveRecord::Base
   has_many :items
   accepts_nested_attributes_for :items
 
+  def set_todays_date
+    self.title = Time.now.strftime('%Y-%m-%d')
+  end
+
   # copy items from another papers
   def copy_items_from(paper, ids)
     if ids
