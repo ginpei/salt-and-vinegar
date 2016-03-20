@@ -7,6 +7,9 @@ h1
   - else
     | (Not titled)
 
+- if @paper.description.present?
+  p = @paper.description
+
 section
   div.linkBlock.antiContainer
     a href="#{purchase_book_paper_path(@book, @paper)}"
