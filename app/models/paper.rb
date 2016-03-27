@@ -3,6 +3,12 @@ class Paper < ActiveRecord::Base
   has_many :items
   accepts_nested_attributes_for :items
 
+  before_create do |paper|
+    if !paper.currency.present? and !paper.book.nil?
+      paper.currency = paper.book.default_currency
+    end
+  end
+
   def set_todays_date
     self.title = Time.now.strftime('%Y-%m-%d')
   end

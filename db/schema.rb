@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160320015604) do
+ActiveRecord::Schema.define(version: 20160327043354) do
 
   create_table "books", force: :cascade do |t|
     t.string   "name"
     t.string   "token"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "currency"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "default_currency"
   end
 
   add_index "books", ["token"], name: "index_books_on_token", unique: true
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20160320015604) do
     t.datetime "updated_at",  null: false
     t.integer  "book_id"
     t.text     "description"
+    t.string   "currency"
   end
 
 end

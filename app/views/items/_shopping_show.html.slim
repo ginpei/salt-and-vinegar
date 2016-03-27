@@ -10,8 +10,8 @@ li.collection-item.item-shopping
         span.mod-item-collection-item-orderer by #{item.orderer}
       - if item.price.present?
         span.mod-item-collection-item-price
-          - if @book.currency.present?
-            | #{@book.currency}#{item.price}
+          - if item.paper.currency.present?
+            | #{item.paper.currency}#{item.price}
           - else
             = item.price
           - if item.unit.present?

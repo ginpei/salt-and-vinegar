@@ -1,6 +1,6 @@
 b = Book.find_by_token('example')
 b.destroy if b
-b = Book.create(name: 'Example', currency: '$')
+b = Book.create(name: 'Example', default_currency: '$')
 b.update(token: 'example')
 p = b.papers.create(title: 'Example')
 p.items.create(name: 'salt', quantity: '1kg', orderer: 'Alice')
@@ -8,7 +8,7 @@ p.items.create(name: 'vinegar')
 
 b = Book.find_by_token('00000000-0000-0000-0000-000000000000')
 b.destroy if b
-b = Book.create(name: 'Dev Book', currency: '$')
+b = Book.create(name: 'Dev Book', default_currency: '$')
 b.update(token: '00000000-0000-0000-0000-000000000000')
 p = b.papers.create(title: 'First Paper', description: 'This is your first paper. Add some items you want!')
 p.items.create(name: 'salt', quantity: '1kg', orderer: 'Alice', price: 10)

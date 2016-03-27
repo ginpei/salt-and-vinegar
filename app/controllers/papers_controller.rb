@@ -121,7 +121,7 @@ class PapersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def paper_params
-      params.require(:paper).permit(:title, :description)
+      params.require(:paper).permit(:title, :description, :currency)
     end
 
     def paper_purchase_params

@@ -15,6 +15,10 @@
     = f.label :description
     = f.text_area :description, class: 'materialize-textarea'
 
+  div.field
+    = f.label :currency
+    = f.text_field :currency
+
   div.right-align
     = button_tag(type: 'submit', class: "btn")
       - if @paper.id
