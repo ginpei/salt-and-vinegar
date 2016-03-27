@@ -44,7 +44,10 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
-        @book.papers.create(title: 'First Paper')
+        @book.papers.create(
+          title: 'First Paper',
+          description: 'This is your first paper. Add some items you want!'
+        )
 
         format.html { redirect_to @book, notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book }
