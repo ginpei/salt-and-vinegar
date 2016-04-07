@@ -14,6 +14,12 @@
     = f.label :default_currency
     = f.text_field :default_currency, placeholder: '$'
 
+  = f.fields_for :taxes do |tf|
+    = tf.hidden_field :name, value: 'Tax'
+    .field
+      = tf.label :rate, 'Tax (%)'
+      = tf.text_field :rate, placeholder: '15'
+
   div.actions.right-align
     = button_tag type: 'submit', class: 'btn'
       i.material-icons.left note_add

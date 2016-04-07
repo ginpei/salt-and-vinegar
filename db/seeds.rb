@@ -2,6 +2,7 @@ b = Book.find_by_token('example')
 b.destroy if b
 b = Book.create(name: 'Example', default_currency: '$')
 b.update(token: 'example')
+b.taxes.build(name: 'Tax', rate:8.275)
 p = b.papers.create(title: 'Example')
 p.items.create(name: 'salt', quantity: '1kg', orderer: 'Alice')
 p.items.create(name: 'vinegar')

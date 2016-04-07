@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  # resources :taxes
+
   resources :books, param: :token, except: [:index] do
     resources :papers do
       member do

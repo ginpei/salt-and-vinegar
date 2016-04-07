@@ -22,10 +22,14 @@ class BooksController < ApplicationController
   # GET /books/new
   def new
     @book = Book.new
+    @book.taxes.new
   end
 
   # GET /books/1/edit
   def edit
+    if @book.taxes.count < 1
+      @book.taxes.new
+    end
   end
 
   # GET /papers/1/select_recent_items
@@ -106,6 +110,9 @@ class BooksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def book_params
-      params.require(:book).permit(:name, :token, :default_currency)
+      params.require(:book).permit(
+        :name, :token, :default_currency,
+        taxes_attributes: [:id, :rate]
+      )
     end
 end

@@ -33,6 +33,15 @@ div.field.mod-item-field.mod-item-field-unit
   br
   = f.text_field :unit, tabindex: (purchasing ? -1 : 0)
 
+- if f.object.paper.book.taxes.count > 0
+  div
+    - f.object.tax_list.each do |tax|
+      div.field.mod-item-field.mod-item-field-tax
+        = check_box_tag "item_#{f.object.id}_tax_ids_#{tax[:id]}", tax[:id], tax[:checked], {name: 'item[tax_ids][]'}
+        = label_tag "item_#{f.object.id}_tax_ids_#{tax[:id]}"
+          | Tax 
+          small = "(#{tax[:rate]}%)"
+
 div.field.mod-item-field.mod-item-field-comment
   = f.label :comment
   br

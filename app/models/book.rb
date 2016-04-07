@@ -1,5 +1,7 @@
 class Book < ActiveRecord::Base
   has_many :papers
+  has_many :taxes
+  accepts_nested_attributes_for :taxes
   before_create :add_token
 
   validates :name, :presence => true

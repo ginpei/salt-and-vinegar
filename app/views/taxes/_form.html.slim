@@ -1,0 +1,15 @@
+= form_for @tax do |f|
+  - if @tax.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@tax.errors.count, "error")} prohibited this tax from being saved:"
+      ul
+        - @tax.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :rate
+    = f.text_field :rate
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions = f.submit

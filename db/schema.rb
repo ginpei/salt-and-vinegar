@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327043354) do
+ActiveRecord::Schema.define(version: 20160327115837) do
 
   create_table "books", force: :cascade do |t|
     t.string   "name"
@@ -37,6 +37,13 @@ ActiveRecord::Schema.define(version: 20160327043354) do
 
   add_index "items", ["paper_id"], name: "index_items_on_paper_id"
 
+  create_table "items_taxes", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "tax_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "papers", force: :cascade do |t|
     t.string   "title"
     t.datetime "created_at",  null: false
@@ -44,6 +51,14 @@ ActiveRecord::Schema.define(version: 20160327043354) do
     t.integer  "book_id"
     t.text     "description"
     t.string   "currency"
+  end
+
+  create_table "taxes", force: :cascade do |t|
+    t.float    "rate"
+    t.string   "name"
+    t.integer  "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

@@ -1,5 +1,6 @@
 class Item < ActiveRecord::Base
   belongs_to :paper
+  has_and_belongs_to_many :taxes
   accepts_nested_attributes_for :paper
   validates_presence_of :name
 
@@ -29,5 +30,34 @@ class Item < ActiveRecord::Base
       })
     end
     result
+  end
+
+  def tax_list
+    unless @tax_list
+      all_taxes = paper.book.taxes
+      @tax_list = all_taxes.map do |tax|
+        { id: tax.id, rate: tax.rate, checked: taxes.include?(tax) }
+      end
+    end
+    @tax_list
+  end
+
+  def update_with_tax_ids(params)
+    update_taxes_by_id(params[:tax_ids])
+    update(params)
+  end
+
+  def update_taxes_by_id(selected_tax_ids)
+    selected_tax_ids = [] unless selected_tax_ids
+
+    # remove
+    taxes.each do |tax|
+      taxes.delete(tax) unless selected_tax_ids.include? tax.id
+    end
+
+    # add
+    selected_tax_ids.each do |tax_id|
+      taxes << Tax.find(tax_id)
+    end
   end
 end
