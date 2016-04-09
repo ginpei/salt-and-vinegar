@@ -7,6 +7,31 @@
         - @paper.errors.full_messages.each do |message|
           li = message
 
+  - if @last_paper
+    div.field
+      h2 Copy Items From Last Paper
+      ul.collection--eachLabel.antiContainer
+        - @last_items.each do |item|
+          li.collection-item
+            input id="item-#{item.id}" name="last_item[]" value="#{item.id}" type="checkbox"
+            label for="item-#{item.id}"
+              = item.name
+              - if item.quantity.present?
+                = " x#{item.quantity}"
+              - if item.orderer.present?
+                = " by #{item.orderer}"
+
+    div.right-align
+      = button_tag(type: 'submit', class: "btn")
+        - if @paper.id
+          i.material-icons.left edit
+          | Update
+        - else
+          i.material-icons.left note_add
+          | Create
+
+  h2 Settings
+
   div.field
     = f.label :title
     = f.text_field :title
@@ -30,26 +55,3 @@
 
   p
     small NOTE: You can leave title empty to be named as the date automatically when create new one.
-
-  - if @last_paper
-    div.field
-      h2 Copy Items From Last Paper
-      ul.collection--eachLabel.antiContainer
-        - @last_items.each do |item|
-          li.collection-item
-            input id="item-#{item.id}" name="last_item[]" value="#{item.id}" type="checkbox"
-            label for="item-#{item.id}"
-              = item.name
-              - if item.quantity.present?
-                = " x#{item.quantity}"
-              - if item.orderer.present?
-                = " by #{item.orderer}"
-
-    div.right-align
-      = button_tag(type: 'submit', class: "btn")
-        - if @paper.id
-          i.material-icons.left edit
-          | Update
-        - else
-          i.material-icons.left note_add
-          | Create
