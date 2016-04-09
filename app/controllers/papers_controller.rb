@@ -21,6 +21,7 @@ class PapersController < ApplicationController
     @last_items = @last_paper.items
 
     @paper = @book.papers.new
+    @paper.currency = @paper.default_currency
   end
 
   # GET /papers/1/edit
