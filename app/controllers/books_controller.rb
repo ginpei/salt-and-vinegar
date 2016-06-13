@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :item_history, :update, :destroy]
 
   # GET /books
   # GET /books.json
@@ -39,6 +39,24 @@ class BooksController < ApplicationController
     @recent_papers = @book.recent_papers
 
     @title = "Edit - #{@book.current_paper.title}"
+  end
+
+  # GET /books/1/item_history
+  def item_history
+    @items = []
+    @book.recent_papers.each do |paper|
+      @items += paper.items.map do |item|
+        {
+          paper_title: item.paper.title,
+          name: item.name,
+          quantity: item.quantity,
+          order: item.quantity,
+          orderer: item.orderer,
+          price: item.price,
+          unit: item.unit,
+        }
+      end
+    end
   end
 
   # POST /books

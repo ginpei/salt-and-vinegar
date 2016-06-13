@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     end
     get 'select_recent_items'
     post 'copy_recent_items'
+    member do
+      get 'item_history'
+    end
   end
 
 

@@ -62,6 +62,9 @@ section
 
 section
   h2 History
+  div.linkBlock.antiContainer
+    a href="#{item_history_book_path(@book)}"
+      | Item History
   p Here are 5 recent papers.
   div.linkBlock.antiContainer
     - @book.recent_papers.each do |paper|

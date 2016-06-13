@@ -1,0 +1,19 @@
+p
+  a href="#{book_path @book}" Back to the book
+
+h1 Item History
+
+table#item_history-table
+  thead
+    tr
+      th Paper
+      th Name
+      th Quantity
+      th Orderer
+      th Price
+      th Unit
+  tbody.js-itemList
+
+script#json-items
+  | var g_page = 'books/item_history';
+  = "var g_items = #{@items.to_json};".html_safe
