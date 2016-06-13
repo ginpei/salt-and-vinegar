@@ -7,30 +7,6 @@
         - @paper.errors.full_messages.each do |message|
           li = message
 
-  div.field
-    = f.label :title
-    = f.text_field :title
-
-  div.field
-    = f.label :description
-    = f.text_area :description, class: 'materialize-textarea'
-
-  div.field
-    = f.label :currency
-    = f.text_field :currency
-
-  div.right-align
-    = button_tag(type: 'submit', class: "btn")
-      - if @paper.id
-        i.material-icons.left edit
-        | Update
-      - else
-        i.material-icons.left note_add
-        | Create
-
-  p
-    small NOTE: You can leave title empty to be named as the date automatically when create new one.
-
   - if @last_paper
     div.field
       h2 Copy Items From Last Paper
@@ -53,3 +29,29 @@
         - else
           i.material-icons.left note_add
           | Create
+
+  h2 Settings
+
+  p
+    small NOTE: You can leave followings empty and set later.
+
+  div.field
+    = f.label :title
+    = f.text_field :title
+
+  div.field
+    = f.label :description
+    = f.text_area :description, class: 'materialize-textarea'
+
+  div.field
+    = f.label :currency
+    = f.text_field :currency
+
+  div.right-align
+    = button_tag(type: 'submit', class: "btn")
+      - if @paper.id
+        i.material-icons.left edit
+        | Update
+      - else
+        i.material-icons.left note_add
+        | Create

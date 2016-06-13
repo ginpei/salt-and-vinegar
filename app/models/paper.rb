@@ -4,9 +4,11 @@ class Paper < ActiveRecord::Base
   accepts_nested_attributes_for :items
 
   before_create do |paper|
-    if !paper.currency.present? and !paper.book.nil?
-      paper.currency = paper.book.default_currency
-    end
+    paper.currency = default_currency unless paper.currency.present?
+  end
+
+  def default_currency
+    book.default_currency unless book.nil?
   end
 
   def set_todays_date
