@@ -13,15 +13,15 @@ snv_books.item_history =
   setup: ()->
     @items = g_items
     @$list = $('.js-itemList')
-    @render_items(@items)
+    @_render_items(@items)
 
-  render_items: (items)->
+  _render_items: (items)->
     html = ''
     items.forEach (item)=>
-      html += @build_item_html(item)
+      html += @_build_item_html(item)
     @$list.html(html)
 
-  build_item_html: (item)->
+  _build_item_html: (item)->
     h = (s)->
       if s is null or s is undefined
         ''
