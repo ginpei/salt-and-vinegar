@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).on 'page:change', (event)->
-  if g_page is 'books/item_history'
+  if window.g_page is 'books/item_history'
     snv_books.item_history.setup()
 
 snv_books = {}
