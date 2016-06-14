@@ -13,7 +13,12 @@ snv_books.item_history =
   setup: ()->
     @items = g_items
     @$list = $('.js-itemList')
+    @_setup_excell()
     @_render_items(@items)
+
+  _setup_excell: ()->
+    @excell = Excell.create
+      el: @$list[0]
 
   _render_items: (items)->
     html = ''
