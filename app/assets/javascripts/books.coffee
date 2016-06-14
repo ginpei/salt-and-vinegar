@@ -35,11 +35,11 @@ snv_books.item_history =
 
     """
     <tr>
-      <td>#{h(item.paper_title)}</td>
-      <td>#{h(item.name)}</td>
-      <td>#{h(item.quantity)}</td>
-      <td>#{h(item.orderer)}</td>
-      <td>#{h(item.price)}</td>
-      <td>#{h(item.unit)}</td>
+      <td class="book-itemHistory-item-paperTitle">#{h(item.paper_title)}</td>
+      <td class="book-itemHistory-item-name">#{h(item.name)}</td>
+      <td class="book-itemHistory-item-quantity">#{h(item.quantity)}</td>
+      <td class="book-itemHistory-item-orderer">#{h(item.orderer)}</td>
+      <td class="book-itemHistory-item-price">#{h(item.price)}</td>
+      <td class="book-itemHistory-item-unit">#{h(item.unit)}</td>
     </tr>
     """
